@@ -1,6 +1,7 @@
-import { useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import type { StoreItemCategory } from '../../domain/entities/StoreItem'
+import type { StoreItem } from '../../domain/entities/StoreItem'
 import { StoreCatalogService } from '../../application/store/StoreCatalogService'
 import { Layout } from '../components/Layout'
 import { StoreCategoryTabs } from '../components/store/StoreCategoryTabs'
@@ -18,16 +19,19 @@ export const StorePage = () => {
   const rawCategory = params.category
   const { spacing, typography } = useTheme()
 
+  const [items, setItems] = useState<StoreItem[]>([])
+  const [loading, setLoading] = useState(true)
+
+  const activeCategory: StoreItemCategory = isValidCategory(rawCategory) ? rawCategory : 'cards'
+
+  useEffect(() => {
+    setLoading(true)
+    catalog.getItemsByCategory(activeCategory).then(setItems).finally(() => setLoading(false))
+  }, [activeCategory])
+
   if (!isValidCategory(rawCategory)) {
     return <Navigate to="/store/cards" replace />
   }
-
-  const activeCategory: StoreItemCategory = rawCategory
-
-  const items = useMemo(
-    () => catalog.getItemsByCategory(activeCategory),
-    [activeCategory],
-  )
 
   const titleByCategory: Record<StoreItemCategory, string> = {
     cards: 'Todas las cartas',
@@ -178,9 +182,15 @@ export const StorePage = () => {
           gap: spacing.md,
         }}
       >
-        {items.map((item) => (
-          <StoreItemCard key={item.id} item={item} />
-        ))}
+        {loading ? (
+          <p style={{ color: 'var(--color-text-muted)', textAlign: 'center' }}>Cargando...</p>
+        ) : items.length === 0 ? (
+          <p style={{ color: 'var(--color-text-muted)', textAlign: 'center' }}>
+            No hay elementos disponibles en esta categoría.
+          </p>
+        ) : (
+          items.map((item) => <StoreItemCard key={item.id} item={item} />)
+        )}
       </section>
     </Layout>
   )

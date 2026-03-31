@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import type { StoreItemCategory } from '../../domain/entities/StoreItem'
+import type { StoreItem } from '../../domain/entities/StoreItem'
 import { StoreCatalogService } from '../../application/store/StoreCatalogService'
 import { Layout } from '../components/Layout'
 import { useTheme } from '../../theme/ThemeProvider'
@@ -15,15 +17,33 @@ export const StoreItemDetailsPage = () => {
   const navigate = useNavigate()
   const { spacing, typography } = useTheme()
 
+  const [item, setItem] = useState<StoreItem | null>(null)
+  const [loading, setLoading] = useState(true)
+
   const rawCategory = params.category
   const id = params.id
+
+  useEffect(() => {
+    if (!isValidCategory(rawCategory) || !id) return
+    setLoading(true)
+    catalog.getItemById(rawCategory, id).then(setItem).finally(() => setLoading(false))
+  }, [rawCategory, id])
 
   if (!isValidCategory(rawCategory) || !id) {
     return <Navigate to="/store/cards" replace />
   }
 
-  const items = catalog.getItemsByCategory(rawCategory)
-  const item = items.find((entry) => entry.id === id)
+  if (loading) {
+    return (
+      <Layout>
+        <p style={{ color: 'var(--color-text-muted)', textAlign: 'center' }}>Cargando...</p>
+      </Layout>
+    )
+  }
+
+  if (!item) {
+    return <Navigate to={`/store/${rawCategory}`} replace />
+  }
 
   if (!item) {
     return <Navigate to={`/store/${rawCategory}`} replace />
