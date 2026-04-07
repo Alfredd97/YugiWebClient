@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useCart } from '../../../application/cart/CartContext'
 import { useTheme } from '../../../theme/ThemeProvider'
 
@@ -9,6 +8,7 @@ interface AddToCartButtonProps {
   price: { usd: number; cup: number }
   availableStock: number
   size?: 'sm' | 'md'
+  showText?: boolean
 }
 
 export const AddToCartButton = ({
@@ -18,40 +18,25 @@ export const AddToCartButton = ({
   price,
   availableStock,
   size = 'md',
+  showText = false,
 }: AddToCartButtonProps) => {
   const { addItem } = useCart()
-  const { colors, radii } = useTheme()
-  const [message, setMessage] = useState<string | null>(null)
-  const [messageType, setMessageType] = useState<'success' | 'error' | null>(null)
+  const { radii } = useTheme()
 
-  const handleAddToCart = () => {
-    const result = addItem(itemId, name, category, price, 1, availableStock)
-
-    setMessage(result.message)
-    setMessageType(result.success ? 'success' : 'error')
-
-    if (result.success) {
-      setTimeout(() => {
-        setMessage(null)
-        setMessageType(null)
-      }, 800)
-    } else {
-      setTimeout(() => {
-        setMessage(null)
-        setMessageType(null)
-      }, 3000)
-    }
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    addItem(itemId, name, category, price, 1, availableStock)
   }
 
   const isDisabled = availableStock <= 0
 
-  const buttonStyles = { 
+  const buttonStyles = {
     sm: {
       padding: '8px 16px',
       fontSize: 12,
     },
     md: {
-      padding: '12px 24px',
+      padding: '14px 24px',
       fontSize: 13,
     },
   }
@@ -62,9 +47,8 @@ export const AddToCartButton = ({
         type="button"
         onClick={(e) => {
           e.stopPropagation() // Prevent card click
-          handleAddToCart()
-          }
-        }
+          handleAddToCart(e)
+        }}
         disabled={isDisabled}
         style={{
           borderRadius: radii.pill,
@@ -77,20 +61,21 @@ export const AddToCartButton = ({
           fontWeight: 700,
           fontSize: buttonStyles[size].fontSize,
           textTransform: 'uppercase',
-          letterSpacing: '0.05em',
+          letterSpacing: '0.08em',
           boxShadow: isDisabled
             ? 'none'
-            : '0 4px 16px rgba(251, 191, 36, 0.4)',
+            : '0 4px 20px rgba(251, 191, 36, 0.4)',
           transition: 'all var(--transition-base)',
           cursor: isDisabled ? 'not-allowed' : 'pointer',
           display: 'flex',
           alignItems: 'center',
-          gap: 8,
+          justifyContent: 'center',
+          gap: 10,
         }}
         onMouseEnter={(e) => {
           if (!isDisabled) {
             e.currentTarget.style.transform = 'translateY(-2px)'
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(251, 191, 36, 0.6)'
+            e.currentTarget.style.boxShadow = '0 8px 30px rgba(251, 191, 36, 0.5)'
           }
         }}
         onMouseLeave={(e) => {
@@ -98,13 +83,13 @@ export const AddToCartButton = ({
             e.currentTarget.style.transform = 'translateY(0)'
             e.currentTarget.style.boxShadow = isDisabled
               ? 'none'
-              : '0 4px 16px rgba(251, 191, 36, 0.4)'
+              : '0 4px 20px rgba(251, 191, 36, 0.4)'
           }
         }}
       >
         <svg
-          width="16"
-          height="16"
+          width="18"
+          height="18"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -116,33 +101,10 @@ export const AddToCartButton = ({
           <circle cx="20" cy="21" r="1" />
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
         </svg>
+        {showText && (
+          <span style={{ marginLeft: 4 }}>Agregar al carrito</span>
+        )}
       </button>
-
-      {message && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '100%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            marginBottom: 8,
-            padding: '8px 12px',
-            borderRadius: radii.md,
-            background: messageType === 'success'
-              ? 'rgba(74, 222, 128, 0.15)'
-              : 'rgba(248, 113, 113, 0.15)',
-            border: `1px solid ${messageType === 'success' ? colors.accentGreen : colors.accentRed}`,
-            color: messageType === 'success' ? colors.accentGreen : colors.accentRed,
-            fontSize: 12,
-            fontWeight: 500,
-            whiteSpace: 'nowrap',
-            animation: 'fadeInUp 0.2s ease-out',
-            zIndex: 10,
-          }}
-        >
-          {message}
-        </div>
-      )}
     </div>
   )
 }
