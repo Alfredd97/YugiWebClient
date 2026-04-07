@@ -7,7 +7,7 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ hero }: HeroSectionProps) => {
-  const { typography, spacing } = useTheme()
+  const { spacing, colors, radii, shadows } = useTheme()
   const navigate = useNavigate()
 
   return (
@@ -18,37 +18,75 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
         gap: spacing.xxl,
         alignItems: 'center',
         marginBottom: spacing.sectionPaddingY,
+        position: 'relative',
       }}
     >
+      {/* Background accent */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '60%',
+          transform: 'translate(-50%, -50%)',
+          width: '400px',
+          height: '400px',
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none',
+          zIndex: -1,
+        }}
+      />
+
       <div>
         <p
           style={{
-            fontSize: 13,
-            letterSpacing: 4,
+            fontSize: 12,
+            fontWeight: 600,
+            letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            color: 'var(--color-primary-soft)',
-            marginBottom: spacing.sm,
+            color: colors.primary,
+            marginBottom: spacing.md,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
           }}
         >
+          <span
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: colors.primary,
+              boxShadow: `0 0 12px ${colors.primaryGlow}`,
+              animation: 'pulse 2s ease-in-out infinite',
+            }}
+          />
           Comunidad Yu-Gi-Oh
         </p>
+
         <h1
           style={{
-            fontSize: typography.heroTitle.size,
-            lineHeight: typography.heroTitle.lineHeight,
-            fontWeight: typography.heroTitle.weight,
+            fontSize: 52,
+            lineHeight: 1.05,
+            fontWeight: 800,
             margin: 0,
             marginBottom: spacing.md,
+            background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
           }}
         >
           {hero.title}
         </h1>
+
         <p
           style={{
-            fontSize: typography.body.size,
-            color: 'var(--color-text-muted)',
+            fontSize: 18,
+            color: colors.textMuted,
             maxWidth: 520,
             marginBottom: spacing.xl,
+            lineHeight: 1.6,
           }}
         >
           {hero.subtitle}
@@ -65,35 +103,57 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
             type="button"
             onClick={() => navigate('/store/cards')}
             style={{
-              borderRadius: 999,
+              borderRadius: radii.pill,
               border: 'none',
-              padding: '12px 26px',
-              background:
-                'linear-gradient(135deg, #facc15, #eab308, #f97316)',
-              color: '#0f172a',
+              padding: '14px 32px',
+              background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fb923c 100%)',
+              color: '#0a0e1a',
               fontWeight: 700,
               fontSize: 14,
-              letterSpacing: 0.08,
+              letterSpacing: '0.05em',
               textTransform: 'uppercase',
-              boxShadow: '0 18px 40px rgba(251, 191, 36, 0.55)',
+              boxShadow: '0 4px 24px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2)',
+              transition: 'all var(--transition-base)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-3px)'
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(251, 191, 36, 0.5), 0 0 60px rgba(251, 191, 36, 0.3)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 24px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2)'
             }}
           >
             {hero.primaryCtaLabel}
           </button>
+
           <button
             type="button"
             onClick={() => navigate('/store/cards')}
             style={{
-              borderRadius: 999,
-              border: '1px solid rgba(148,163,184,0.6)',
-              padding: '12px 26px',
-              background:
-                'radial-gradient(circle at top left, rgba(148,163,184,0.2), rgba(15,23,42,0.95))',
-              color: '#e5e7eb',
+              borderRadius: radii.pill,
+              border: `1px solid ${colors.borderStrong}`,
+              padding: '14px 32px',
+              background: 'rgba(15, 23, 42, 0.5)',
+              backdropFilter: 'blur(8px)',
+              color: colors.text,
               fontWeight: 600,
               fontSize: 14,
-              letterSpacing: 0.08,
+              letterSpacing: '0.05em',
               textTransform: 'uppercase',
+              transition: 'all var(--transition-base)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(30, 41, 59, 0.6)'
+              e.currentTarget.style.borderColor = colors.primary
+              e.currentTarget.style.color = colors.primary
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(15, 23, 42, 0.5)'
+              e.currentTarget.style.borderColor = colors.borderStrong
+              e.currentTarget.style.color = colors.text
             }}
           >
             {hero.secondaryCtaLabel}
@@ -105,41 +165,47 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
         style={{
           position: 'relative',
           height: '100%',
-          minHeight: 220,
+          minHeight: 280,
         }}
       >
+        {/* Glow effect behind card */}
         <div
           style={{
             position: 'absolute',
-            inset: 0,
-            borderRadius: 24,
-            background:
-              'conic-gradient(from 220deg, rgba(250,204,21,0.35), rgba(56,189,248,0.2), rgba(129,140,248,0.35), rgba(248,113,113,0.25))',
-            opacity: 0.9,
-            filter: 'blur(18px)',
+            inset: '-10%',
+            borderRadius: 28,
+            background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.15), rgba(251, 191, 36, 0.2))',
+            filter: 'blur(40px)',
+            opacity: 0.6,
+            animation: 'glow 3s ease-in-out infinite',
           }}
         />
+
         <div
           style={{
             position: 'relative',
-            borderRadius: 24,
-            border: '1px solid rgba(55,65,81,0.9)',
-            background:
-              'radial-gradient(circle at top, #111827 0, #020617 65%, #000 100%)',
+            borderRadius: radii.xl,
+            border: `1px solid ${colors.borderStrong}`,
+            background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%)',
+            backdropFilter: 'blur(20px)',
             padding: spacing.xl,
-            boxShadow: '0 30px 80px rgba(15,23,42,0.95)',
+            boxShadow: `${shadows.strong}, inset 0 1px 0 rgba(255, 255, 255, 0.05)`,
             overflow: 'hidden',
+            animation: 'float 6s ease-in-out infinite',
           }}
         >
+          {/* Inner shimmer */}
           <div
             style={{
               position: 'absolute',
-              inset: '-40%',
-              opacity: 0.3,
-              backgroundImage:
-                'radial-gradient(circle at 10% 20%, rgba(248,250,252,0.12) 0, transparent 45%), radial-gradient(circle at 80% 10%, rgba(248,250,252,0.18) 0, transparent 40%), radial-gradient(circle at 50% 80%, rgba(250,204,21,0.18) 0, transparent 45%)',
+              inset: 0,
+              background: 'linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%)',
+              backgroundSize: '200% 200%',
+              animation: 'shimmer 3s ease-in-out infinite',
+              pointerEvents: 'none',
             }}
           />
+
           <div
             style={{
               position: 'relative',
@@ -159,47 +225,56 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
               <div>
                 <div
                   style={{
-                    fontSize: 13,
-                    letterSpacing: 3,
+                    fontSize: 11,
+                    fontWeight: 600,
+                    letterSpacing: '0.2em',
                     textTransform: 'uppercase',
-                    color: 'rgba(156,163,175,0.9)',
+                    color: colors.textMuted,
+                    marginBottom: 4,
                   }}
                 >
                   Los dioses egipcios
                 </div>
                 <div
                   style={{
-                    marginTop: 6,
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: 700,
+                    background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
                   }}
                 >
                   Slifer · Obelisk · Ra
                 </div>
               </div>
+
               <div
                 style={{
-                  fontSize: 12,
-                  padding: '4px 10px',
-                  borderRadius: 999,
-                  border: '1px solid rgba(55,65,81,0.9)',
-                  backgroundColor: 'rgba(15,23,42,0.85)',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  padding: '6px 12px',
+                  borderRadius: radii.pill,
+                  border: `1px solid ${colors.borderSubtle}`,
+                  backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                  backdropFilter: 'blur(8px)',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: 6,
+                  gap: 8,
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
                 }}
               >
                 <span
                   style={{
-                    width: 8,
-                    height: 8,
+                    width: 6,
+                    height: 6,
                     borderRadius: '50%',
-                    background:
-                      'conic-gradient(from 180deg, #f97316, #facc15, #a855f7, #38bdf8)',
-                    boxShadow: '0 0 10px rgba(250,204,21,0.7)',
+                    background: 'linear-gradient(135deg, #fb923c, #fbbf24, #a855f7, #38bdf8)',
+                    boxShadow: '0 0 12px rgba(251, 191, 36, 0.8)',
                   }}
                 />
-                Activo para la comunidad
+                Activo
               </div>
             </div>
 
@@ -210,68 +285,86 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                 gap: spacing.md,
               }}
             >
-              {['Slifer', 'Obelisk', 'Ra'].map((name, index) => (
-                <div
-                  key={name}
-                  style={{
-                    position: 'relative',
-                    borderRadius: 18,
-                    border: '1px solid rgba(55,65,81,0.9)',
-                    background:
-                      'radial-gradient(circle at top, rgba(15,23,42,0.9), rgba(15,23,42,1))',
-                    padding: spacing.sm,
-                    boxShadow:
-                      index === 1
-                        ? '0 0 35px rgba(248,250,252,0.25)'
-                        : '0 0 20px rgba(15,23,42,0.9)',
-                  }}
-                >
+              {['Slifer', 'Obelisk', 'Ra'].map((name, index) => {
+                const gradients = [
+                  'linear-gradient(145deg, #dc2626, #f97316)',
+                  'linear-gradient(145deg, #4f46e5, #06b6d4)',
+                  'linear-gradient(145deg, #fbbf24, #f59e0b)',
+                ]
+                const glows = [
+                  '0 0 25px rgba(220, 38, 38, 0.5)',
+                  '0 0 35px rgba(79, 70, 229, 0.5)',
+                  '0 0 25px rgba(251, 191, 36, 0.5)',
+                ]
+
+                return (
                   <div
+                    key={name}
                     style={{
-                      height: 80,
-                      borderRadius: 14,
-                      background:
-                        index === 0
-                          ? 'linear-gradient(145deg, #b91c1c, #f97316)'
-                          : index === 1
-                            ? 'linear-gradient(145deg, #4f46e5, #38bdf8)'
-                            : 'linear-gradient(145deg, #facc15, #f97316)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#f9fafb',
-                      fontWeight: 800,
-                      letterSpacing: 1,
-                      textTransform: 'uppercase',
-                      fontSize: 18,
+                      position: 'relative',
+                      borderRadius: radii.lg,
+                      border: `1px solid ${colors.borderStrong}`,
+                      background: 'rgba(15, 23, 42, 0.8)',
+                      padding: spacing.md,
+                      boxShadow: `${glows[index]}, inset 0 1px 0 rgba(255, 255, 255, 0.05)`,
+                      transition: 'transform var(--transition-base), box-shadow var(--transition-base)',
+                      cursor: 'pointer',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-4px)'
+                      e.currentTarget.style.boxShadow = glows[index].replace('0.5', '0.8')
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = glows[index]
                     }}
                   >
-                    {name}
+                    <div
+                      style={{
+                        height: 70,
+                        borderRadius: radii.md,
+                        background: gradients[index],
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#f8fafc',
+                        fontWeight: 800,
+                        letterSpacing: '0.05em',
+                        textTransform: 'uppercase',
+                        fontSize: 14,
+                        boxShadow: 'inset 0 2px 10px rgba(0, 0, 0, 0.3)',
+                      }}
+                    >
+                      {name}
+                    </div>
+                    <div
+                      style={{
+                        marginTop: 8,
+                        fontSize: 10,
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.15em',
+                        color: colors.textSubtle,
+                        textAlign: 'center',
+                      }}
+                    >
+                      Dios egipcio
+                    </div>
                   </div>
-                  <div
-                    style={{
-                      marginTop: 6,
-                      fontSize: 11,
-                      textTransform: 'uppercase',
-                      letterSpacing: 1.5,
-                      color: 'rgba(156,163,175,0.9)',
-                    }}
-                  >
-                    Dios egipcio
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
             <p
               style={{
                 margin: 0,
                 fontSize: 12,
-                color: 'rgba(156,163,175,0.9)',
+                color: colors.textMuted,
+                lineHeight: 1.5,
               }}
             >
               Únase al duelo de monstruos, comercie cartas, decks y accesorios junto a toda la
-              comunidad de YuGi Faction.
+              comunidad de <span style={{ color: colors.primary, fontWeight: 600 }}>YuGi Faction</span>.
             </p>
           </div>
         </div>

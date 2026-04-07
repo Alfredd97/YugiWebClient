@@ -8,7 +8,7 @@ interface CommunitySectionProps {
 }
 
 export const CommunitySection = ({ developers, donors }: CommunitySectionProps) => {
-  const { spacing, typography } = useTheme()
+  const { spacing, colors, radii, shadows } = useTheme()
 
   return (
     <section
@@ -23,21 +23,26 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
       <div>
         <h2
           style={{
-            fontSize: typography.sectionTitle.size,
-            lineHeight: typography.sectionTitle.lineHeight,
-            fontWeight: typography.sectionTitle.weight,
+            fontSize: 32,
+            lineHeight: 1.2,
+            fontWeight: 700,
             margin: 0,
             marginBottom: spacing.sm,
+            background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
           }}
         >
           Desarrolladores
         </h2>
         <p
           style={{
-            fontSize: typography.body.size,
-            color: 'var(--color-text-muted)',
+            fontSize: 16,
+            color: colors.textMuted,
             maxWidth: 480,
             marginBottom: spacing.lg,
+            lineHeight: 1.6,
           }}
         >
           Personal que ha desarrollado o contribuido al proyecto YuGi Faction. Les agradecemos por
@@ -53,36 +58,45 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
           {developers
             .slice()
             .sort((a, b) => a.order - b.order)
-            .map((dev) => (
+            .map((dev, index) => (
               <article
                 key={dev.id}
                 style={{
-                  borderRadius: 20,
-                  border: '1px solid rgba(31,41,55,0.95)',
-                  background:
-                    'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,1))',
+                  borderRadius: radii.xl,
+                  border: `1px solid ${colors.borderStrong}`,
+                  background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%)',
+                  backdropFilter: 'blur(20px)',
                   padding: spacing.lg,
-                  boxShadow: '0 18px 40px rgba(15,23,42,0.95)',
+                  boxShadow: shadows.medium,
                   display: 'flex',
                   alignItems: 'center',
                   gap: spacing.md,
+                  transition: 'all var(--transition-base)',
+                  animation: `fadeInUp 0.4s ease-out ${index * 0.1}s both`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = colors.primary
+                  e.currentTarget.style.transform = 'translateX(4px)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = colors.borderStrong
+                  e.currentTarget.style.transform = 'translateX(0)'
                 }}
               >
                 <div
                   style={{
-                    width: 52,
-                    height: 52,
+                    width: 56,
+                    height: 56,
                     borderRadius: '50%',
-                    border: '2px solid rgba(250,204,21,0.9)',
-                    background:
-                      'radial-gradient(circle at 25% 0, #4f46e5, #a855f7 45%, #f97316 100%)',
+                    border: `2px solid ${colors.primary}`,
+                    background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #f59e0b 100%)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontWeight: 800,
-                    fontSize: 20,
-                    color: '#f9fafb',
-                    boxShadow: '0 0 26px rgba(129,140,248,0.7)',
+                    fontSize: 22,
+                    color: '#0a0e1a',
+                    boxShadow: '0 0 30px rgba(168, 85, 247, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1)',
                     flexShrink: 0,
                   }}
                 >
@@ -92,7 +106,9 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
                   <div
                     style={{
                       fontWeight: 600,
+                      fontSize: 15,
                       marginBottom: 4,
+                      color: colors.text,
                     }}
                   >
                     {dev.name}
@@ -100,8 +116,9 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
                   <p
                     style={{
                       margin: 0,
-                      fontSize: 14,
-                      color: 'var(--color-text-muted)',
+                      fontSize: 13,
+                      color: colors.textMuted,
+                      fontWeight: 500,
                     }}
                   >
                     {dev.role}
@@ -115,21 +132,26 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
       <div>
         <h2
           style={{
-            fontSize: typography.sectionTitle.size,
-            lineHeight: typography.sectionTitle.lineHeight,
-            fontWeight: typography.sectionTitle.weight,
+            fontSize: 32,
+            lineHeight: 1.2,
+            fontWeight: 700,
             margin: 0,
             marginBottom: spacing.sm,
+            background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
           }}
         >
           Donaciones
         </h2>
         <p
           style={{
-            fontSize: typography.body.size,
-            color: 'var(--color-text-muted)',
+            fontSize: 16,
+            color: colors.textMuted,
             maxWidth: 420,
             marginBottom: spacing.lg,
+            lineHeight: 1.6,
           }}
         >
           Usuarios que han donado voluntariamente al proyecto YuGi Faction. Gracias por su apoyo y
@@ -138,61 +160,81 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
 
         <div
           style={{
-            borderRadius: 22,
-            border: '1px solid rgba(31,41,55,0.95)',
-            background:
-              'radial-gradient(circle at top, rgba(15,23,42,0.95), rgba(15,23,42,1))',
+            borderRadius: radii.xl,
+            border: `1px solid ${colors.borderStrong}`,
+            background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%)',
+            backdropFilter: 'blur(20px)',
             padding: spacing.lg,
-            boxShadow: '0 24px 60px rgba(15,23,42,0.95)',
+            boxShadow: shadows.medium,
             display: 'flex',
             flexWrap: 'wrap',
-            gap: spacing.md,
+            gap: spacing.sm,
           }}
         >
-          {donors.map((donor) => (
+          {donors.map((donor, index) => (
             <div
               key={donor.id}
               style={{
-                borderRadius: 999,
-                border: '1px solid rgba(55,65,81,0.9)',
-                padding: '8px 16px',
+                borderRadius: radii.pill,
+                border: `1px solid ${colors.borderSubtle}`,
+                padding: '8px 14px',
                 fontSize: 13,
-                background:
-                  'radial-gradient(circle at top, rgba(15,23,42,0.95), rgba(15,23,42,1))',
+                fontWeight: 500,
+                background: 'rgba(2, 6, 23, 0.5)',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: spacing.xs,
+                transition: 'all var(--transition-fast)',
+                animation: `scaleIn 0.3s ease-out ${index * 0.05}s both`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = colors.primary
+                e.currentTarget.style.background = 'rgba(15, 23, 42, 0.7)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = colors.borderSubtle
+                e.currentTarget.style.background = 'rgba(2, 6, 23, 0.5)'
               }}
             >
               <span
                 aria-hidden
                 style={{
-                  width: 6,
-                  height: 6,
+                  width: 8,
+                  height: 8,
                   borderRadius: '50%',
-                  background:
-                    'conic-gradient(from 180deg, #f97316, #facc15, #22c55e, #38bdf8)',
-                  boxShadow: '0 0 10px rgba(250,204,21,0.9)',
+                  background: 'linear-gradient(135deg, #fb923c, #fbbf24, #4ade80, #38bdf8)',
+                  boxShadow: '0 0 12px rgba(251, 191, 36, 0.8)',
+                  flexShrink: 0,
                 }}
               />
               {donor.displayName}
             </div>
           ))}
+
           <button
             type="button"
             style={{
-              marginTop: spacing.sm,
-              borderRadius: 999,
+              marginTop: spacing.md,
+              borderRadius: radii.pill,
               border: 'none',
-              padding: '10px 22px',
-              background:
-                'linear-gradient(135deg, #f97316, #facc15, #f97316)',
-              color: '#020617',
+              padding: '12px 26px',
+              background: 'linear-gradient(135deg, #fb923c 0%, #fbbf24 50%, #f97316 100%)',
+              color: '#0a0e1a',
               fontWeight: 700,
-              fontSize: 13,
-              letterSpacing: 0.08,
+              fontSize: 12,
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              boxShadow: '0 18px 40px rgba(251,191,36,0.7)',
+              boxShadow: '0 4px 20px rgba(251, 191, 36, 0.5)',
+              transition: 'all var(--transition-base)',
+              width: '100%',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 8px 30px rgba(251, 191, 36, 0.7)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(251, 191, 36, 0.5)'
             }}
           >
             Donar

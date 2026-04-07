@@ -17,7 +17,7 @@ const isValidCategory = (value: string | undefined): value is StoreItemCategory 
 export const StorePage = () => {
   const params = useParams()
   const rawCategory = params.category
-  const { spacing, typography } = useTheme()
+  const { spacing, colors, radii, shadows } = useTheme()
 
   const [items, setItems] = useState<StoreItem[]>([])
   const [loading, setLoading] = useState(true)
@@ -53,141 +53,313 @@ export const StorePage = () => {
       <section
         style={{
           marginBottom: spacing.sectionPaddingY,
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)',
-          gap: spacing.xxl,
-          alignItems: 'flex-start',
+          position: 'relative',
         }}
       >
-        <div>
-          <p
-            style={{
-              fontSize: 13,
-              textTransform: 'uppercase',
-              letterSpacing: 4,
-              color: 'var(--color-primary-soft)',
-              marginBottom: spacing.sm,
-            }}
-          >
-            Tienda YuGi Faction
-          </p>
-          <h1
-            style={{
-              fontSize: typography.sectionTitle.size + 4,
-              lineHeight: typography.sectionTitle.lineHeight,
-              fontWeight: typography.sectionTitle.weight,
-              margin: 0,
-              marginBottom: spacing.sm,
-            }}
-          >
-            {titleByCategory[activeCategory]}
-          </h1>
-          <p
-            style={{
-              fontSize: typography.body.size,
-              color: 'var(--color-text-muted)',
-              maxWidth: 520,
-              marginBottom: spacing.lg,
-            }}
-          >
-            {subtitleByCategory[activeCategory]}
-          </p>
-          <StoreCategoryTabs activeCategory={activeCategory} />
-        </div>
+        {/* Background accent */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '30%',
+            transform: 'translate(-50%, -50%)',
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%)',
+            filter: 'blur(80px)',
+            pointerEvents: 'none',
+            zIndex: -1,
+          }}
+        />
 
         <div
           style={{
-            borderRadius: 22,
-            border: '1px solid rgba(31,41,55,0.95)',
-            background:
-              'radial-gradient(circle at top, rgba(15,23,42,0.98), rgba(15,23,42,1))',
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: spacing.xl,
+            marginBottom: spacing.xl,
+          }}
+        >
+          <div>
+            <p
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.25em',
+                textTransform: 'uppercase',
+                color: colors.primary,
+                marginBottom: spacing.md,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+              }}
+            >
+              <span
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: '50%',
+                  background: colors.primary,
+                  boxShadow: `0 0 16px ${colors.primaryGlow}`,
+                  animation: 'pulse 2s ease-in-out infinite',
+                }}
+              />
+              Tienda YuGi Faction
+            </p>
+
+            <h1
+              style={{
+                fontSize: 48,
+                lineHeight: 1.1,
+                fontWeight: 900,
+                margin: 0,
+                marginBottom: spacing.md,
+                background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fb923c 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 40px rgba(251, 191, 36, 0.3)',
+              }}
+            >
+              {titleByCategory[activeCategory]}
+            </h1>
+
+            <p
+              style={{
+                fontSize: 15,
+                color: colors.textMuted,
+                maxWidth: 600,
+                marginBottom: spacing.lg,
+                lineHeight: 1.7,
+              }}
+            >
+              {subtitleByCategory[activeCategory]}
+            </p>
+
+            <StoreCategoryTabs activeCategory={activeCategory} />
+          </div>
+        </div>
+
+        {/* Filters Panel */}
+        <div
+          style={{
+            borderRadius: radii.xl,
+            border: `1px solid ${colors.borderStrong}`,
+            background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.9) 100%)',
+            backdropFilter: 'blur(20px)',
             padding: spacing.lg,
-            boxShadow: '0 24px 60px rgba(15,23,42,0.96)',
+            boxShadow: shadows.medium,
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            gap: spacing.lg,
+            flexWrap: 'wrap',
           }}
         >
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-              gap: spacing.sm,
-              fontSize: 13,
+              display: 'flex',
+              alignItems: 'flex-end',
+              gap: spacing.lg,
+              flex: 1,
+              minWidth: 0,
             }}
           >
             <label
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 4,
-                color: 'var(--color-text-muted)',
+                gap: 8,
+                color: colors.textMuted,
+                fontSize: 12,
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                flex: 1,
+                minWidth: 200,
               }}
             >
-              <span>Buscar</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+                Buscar
+              </span>
               <input
                 type="text"
-                placeholder="Nombre de la carta..."
+                placeholder="Buscar productos..."
                 style={{
-                  borderRadius: 999,
-                  border: '1px solid rgba(55,65,81,0.9)',
-                  backgroundColor: 'rgba(15,23,42,0.9)',
-                  padding: '8px 12px',
-                  color: '#e5e7eb',
-                  fontSize: 13,
+                  borderRadius: radii.md,
+                  border: `1px solid ${colors.borderSubtle}`,
+                  backgroundColor: 'rgba(2, 6, 23, 0.6)',
+                  padding: '12px 16px',
+                  color: colors.text,
+                  fontSize: 14,
+                  fontWeight: 500,
+                  outline: 'none',
+                  transition: 'all var(--transition-fast)',
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = colors.primary
+                  e.currentTarget.style.backgroundColor = 'rgba(15, 23, 42, 0.8)'
+                  e.currentTarget.style.boxShadow = `0 0 0 3px rgba(251, 191, 36, 0.2)`
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = colors.borderSubtle
+                  e.currentTarget.style.backgroundColor = 'rgba(2, 6, 23, 0.6)'
+                  e.currentTarget.style.boxShadow = 'none'
                 }}
               />
             </label>
+
             <label
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 4,
-                color: 'var(--color-text-muted)',
+                gap: 8,
+                color: colors.textMuted,
+                fontSize: 12,
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                minWidth: 180,
               }}
             >
-              <span>Ordenar</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M3 6h18M6 12h12M9 18h9" />
+                </svg>
+                Ordenar
+              </span>
               <select
                 style={{
-                  borderRadius: 999,
-                  border: '1px solid rgba(55,65,81,0.9)',
-                  backgroundColor: 'rgba(15,23,42,0.9)',
-                  padding: '8px 12px',
-                  color: '#e5e7eb',
-                  fontSize: 13,
+                  borderRadius: radii.md,
+                  border: `1px solid ${colors.borderSubtle}`,
+                  backgroundColor: 'rgba(2, 6, 23, 0.6)',
+                  padding: '12px 16px',
+                  color: colors.text,
+                  fontSize: 14,
+                  fontWeight: 500,
+                  outline: 'none',
+                  cursor: 'pointer',
+                  transition: 'all var(--transition-fast)',
+                  appearance: 'none',
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='${encodeURIComponent(colors.textMuted)}' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 12px center',
+                  paddingRight: 40,
                 }}
                 defaultValue="none"
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = colors.primary
+                  e.currentTarget.style.backgroundColor = 'rgba(15, 23, 42, 0.8)'
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = colors.borderSubtle
+                  e.currentTarget.style.backgroundColor = 'rgba(2, 6, 23, 0.6)'
+                }}
               >
-                <option value="none">N/A</option>
+                <option value="none">Sin orden</option>
                 <option value="recent">Más reciente</option>
-                <option value="price-asc">Precio</option>
-                <option value="name">Nombre</option>
+                <option value="price-asc">Precio (menor a mayor)</option>
+                <option value="price-desc">Precio (mayor a menor)</option>
+                <option value="name">Nombre (A-Z)</option>
               </select>
             </label>
           </div>
-          <p
+
+          <div
             style={{
-              marginTop: spacing.sm,
-              marginBottom: 0,
-              fontSize: 12,
-              color: 'rgba(148,163,184,0.9)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: spacing.sm,
+              paddingBottom: '2px',
             }}
           >
-            Filtros y ordenamiento son demostrativos y no modifican los resultados aún.
-          </p>
+            <span
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: '50%',
+                background: colors.accentGreen,
+                boxShadow: `0 0 8px ${colors.accentGreen}`,
+              }}
+            />
+            <span style={{ fontSize: 12, color: colors.textMuted, fontWeight: 500 }}>
+              {loading ? 'Cargando...' : `${items.length} productos`}
+            </span>
+          </div>
         </div>
       </section>
 
       <section
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: spacing.md,
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+          gap: spacing.lg,
         }}
       >
         {loading ? (
-          <p style={{ color: 'var(--color-text-muted)', textAlign: 'center' }}>Cargando...</p>
+          <>
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  borderRadius: radii.xl,
+                  border: `1px solid ${colors.borderStrong}`,
+                  background: 'rgba(15, 23, 42, 0.5)',
+                  padding: spacing.lg,
+                  display: 'grid',
+                  gridTemplateColumns: '100px 1fr auto',
+                  gap: spacing.lg,
+                  alignItems: 'stretch',
+                }}
+              >
+                <div style={{ borderRadius: radii.lg, background: 'rgba(30, 41, 59, 0.5)' }} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.sm }}>
+                  <div style={{ height: 20, borderRadius: radii.sm, background: 'rgba(30, 41, 59, 0.5)' }} />
+                  <div style={{ height: 14, borderRadius: radii.sm, background: 'rgba(30, 41, 59, 0.5)', width: '70%' }} />
+                  <div style={{ height: 14, borderRadius: radii.sm, background: 'rgba(30, 41, 59, 0.5)', width: '50%' }} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.sm, alignItems: 'flex-end' }}>
+                  <div style={{ height: 28, width: 80, borderRadius: radii.sm, background: 'rgba(30, 41, 59, 0.5)' }} />
+                  <div style={{ height: 32, width: 100, borderRadius: radii.pill, background: 'rgba(30, 41, 59, 0.5)' }} />
+                </div>
+              </div>
+            ))}
+          </>
         ) : items.length === 0 ? (
-          <p style={{ color: 'var(--color-text-muted)', textAlign: 'center' }}>
-            No hay elementos disponibles en esta categoría.
-          </p>
+          <div
+            style={{
+              gridColumn: '1 / -1',
+              textAlign: 'center',
+              padding: spacing.xxl,
+              borderRadius: radii.xl,
+              border: `1px dashed ${colors.borderStrong}`,
+              background: 'rgba(15, 23, 42, 0.3)',
+            }}
+          >
+            <svg
+              width="56"
+              height="56"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={colors.textSubtle}
+              strokeWidth="1.5"
+              style={{ opacity: 0.5, marginBottom: spacing.md }}
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+            </svg>
+            <p style={{ color: colors.text, fontSize: 16, fontWeight: 600, margin: 0 }}>
+              No hay productos en esta categoría
+            </p>
+            <p style={{ color: colors.textMuted, fontSize: 13, marginTop: 8 }}>
+              Explora otras categorías o vuelve más tarde
+            </p>
+          </div>
         ) : (
           items.map((item) => <StoreItemCard key={item.id} item={item} />)
         )}

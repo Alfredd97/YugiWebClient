@@ -7,7 +7,7 @@ interface StoreCategoryTabsProps {
 }
 
 export const StoreCategoryTabs = ({ activeCategory }: StoreCategoryTabsProps) => {
-  const { spacing } = useTheme()
+  const { spacing, colors, radii } = useTheme()
 
   const categories: { id: StoreItemCategory; label: string }[] = [
     { id: 'cards', label: 'Cartas' },
@@ -19,13 +19,13 @@ export const StoreCategoryTabs = ({ activeCategory }: StoreCategoryTabsProps) =>
     <div
       style={{
         display: 'inline-flex',
-        padding: 4,
-        borderRadius: 999,
-        border: '1px solid rgba(31,41,55,0.95)',
-        background:
-          'radial-gradient(circle at top, rgba(15,23,42,1), rgba(15,23,42,0.96))',
-        boxShadow: '0 16px 40px rgba(15,23,42,0.9)',
-        gap: 2,
+        padding: 5,
+        borderRadius: radii.pill,
+        border: `1px solid ${colors.borderStrong}`,
+        background: 'rgba(2, 6, 23, 0.6)',
+        backdropFilter: 'blur(12px)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+        gap: 4,
       }}
     >
       {categories.map((cat) => {
@@ -35,18 +35,34 @@ export const StoreCategoryTabs = ({ activeCategory }: StoreCategoryTabsProps) =>
             key={cat.id}
             to={`/store/${cat.id}`}
             style={{
-              borderRadius: 999,
-              padding: `${spacing.xs}px ${spacing.lg}px`,
-              fontSize: 13,
+              borderRadius: radii.pill,
+              padding: `8px ${spacing.lg}px`,
+              fontSize: 12,
               fontWeight: 600,
               textTransform: 'uppercase',
-              letterSpacing: 0.08,
-              color: isActive ? '#020617' : '#e5e7eb',
+              letterSpacing: '0.08em',
+              color: isActive ? '#0a0e1a' : colors.textMuted,
               background: isActive
-                ? 'linear-gradient(135deg, #facc15, #eab308, #f97316)'
+                ? 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fb923c 100%)'
                 : 'transparent',
-              border: isActive ? '1px solid rgba(250,204,21,0.9)' : '1px solid transparent',
+              border: isActive ? 'none' : `1px solid ${colors.borderSubtle}`,
               textDecoration: 'none',
+              transition: 'all var(--transition-fast)',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={(e) => {
+              if (!isActive) {
+                e.currentTarget.style.color = colors.text
+                e.currentTarget.style.borderColor = colors.borderStrong
+                e.currentTarget.style.background = 'rgba(30, 41, 59, 0.4)'
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!isActive) {
+                e.currentTarget.style.color = colors.textMuted
+                e.currentTarget.style.borderColor = colors.borderSubtle
+                e.currentTarget.style.background = 'transparent'
+              }
             }}
           >
             {cat.label}

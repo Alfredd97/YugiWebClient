@@ -8,7 +8,7 @@ interface FeaturesSectionProps {
 }
 
 export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) => {
-  const { spacing, typography } = useTheme()
+  const { spacing, colors, radii, shadows } = useTheme()
 
   return (
     <section
@@ -18,26 +18,32 @@ export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) 
         gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)',
         gap: spacing.xxl,
         alignItems: 'flex-start',
+        position: 'relative',
       }}
     >
       <div>
         <h2
           style={{
-            fontSize: typography.sectionTitle.size,
-            lineHeight: typography.sectionTitle.lineHeight,
-            fontWeight: typography.sectionTitle.weight,
+            fontSize: 32,
+            lineHeight: 1.2,
+            fontWeight: 700,
             margin: 0,
             marginBottom: spacing.sm,
+            background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
           }}
         >
           Características
         </h2>
         <p
           style={{
-            fontSize: typography.body.size,
-            color: 'var(--color-text-muted)',
+            fontSize: 16,
+            color: colors.textMuted,
             maxWidth: 520,
             marginBottom: spacing.lg,
+            lineHeight: 1.6,
           }}
         >
           Tenemos el objetivo de agrupar a toda la comunidad de YU-GI-OH y hacer de esta una gran
@@ -50,37 +56,57 @@ export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) 
             padding: 0,
             margin: 0,
             display: 'grid',
-            gap: spacing.sm,
+            gap: spacing.md,
           }}
         >
-          {features.map((feature) => (
+          {features.map((feature, index) => (
             <li
               key={feature.id}
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
-                gap: spacing.sm,
-                fontSize: typography.body.size,
+                gap: spacing.md,
+                padding: spacing.md,
+                borderRadius: radii.lg,
+                background: 'rgba(15, 23, 42, 0.3)',
+                border: `1px solid ${colors.borderSubtle}`,
+                transition: 'all var(--transition-base)',
+                animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(30, 41, 59, 0.5)'
+                e.currentTarget.style.borderColor = colors.borderAccent
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(15, 23, 42, 0.3)'
+                e.currentTarget.style.borderColor = colors.borderSubtle
               }}
             >
               <span
                 aria-hidden
                 style={{
-                  width: 18,
-                  height: 18,
+                  width: 24,
+                  height: 24,
                   borderRadius: '50%',
-                  background:
-                    'radial-gradient(circle at 30% 0, #facc15, #a855f7 55%, #0ea5e9 100%)',
-                  marginTop: 4,
+                  background: 'linear-gradient(135deg, #6366f1, #a855f7, #f59e0b)',
+                  marginTop: 2,
                   flexShrink: 0,
-                  boxShadow: '0 0 18px rgba(250,204,21,0.7)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 0 20px rgba(168, 85, 247, 0.5)',
+                  fontSize: 12,
                 }}
-              />
+              >
+                ✓
+              </span>
               <div>
                 <div
                   style={{
                     fontWeight: 600,
-                    marginBottom: 2,
+                    fontSize: 15,
+                    marginBottom: 4,
+                    color: colors.text,
                   }}
                 >
                   {feature.title}
@@ -88,8 +114,9 @@ export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) 
                 <p
                   style={{
                     margin: 0,
-                    color: 'var(--color-text-muted)',
+                    color: colors.textMuted,
                     fontSize: 14,
+                    lineHeight: 1.5,
                   }}
                 >
                   {feature.description}
@@ -102,24 +129,24 @@ export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) 
 
       <div
         style={{
-          borderRadius: 24,
-          border: '1px solid rgba(55,65,81,0.9)',
-          background:
-            'radial-gradient(circle at top, #020617 0, #020617 55%, #000 100%)',
+          borderRadius: radii.xl,
+          border: `1px solid ${colors.borderStrong}`,
+          background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%)',
+          backdropFilter: 'blur(20px)',
           padding: spacing.xl,
-          boxShadow: '0 26px 60px rgba(15,23,42,0.95)',
+          boxShadow: shadows.strong,
           display: 'grid',
-          gap: spacing.md,
+          gap: spacing.lg,
         }}
       >
         <h3
           style={{
             margin: 0,
-            fontSize: 16,
-            fontWeight: 600,
-            letterSpacing: 1.4,
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: 'rgba(156,163,175,0.9)',
+            color: colors.textMuted,
           }}
         >
           Números de la comunidad
@@ -131,44 +158,61 @@ export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) 
             gap: spacing.md,
           }}
         >
-          {statistics.map((stat) => (
+          {statistics.map((stat, index) => (
             <div
               key={stat.id}
               style={{
-                borderRadius: 18,
-                border: '1px solid rgba(31,41,55,0.95)',
-                background:
-                  'radial-gradient(circle at top left, rgba(15,23,42,0.9), rgba(15,23,42,1))',
-                padding: spacing.md,
+                borderRadius: radii.lg,
+                border: `1px solid ${colors.borderSubtle}`,
+                background: 'rgba(2, 6, 23, 0.5)',
+                padding: spacing.lg,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: spacing.xs,
+                transition: 'all var(--transition-base)',
+                position: 'relative',
+                overflow: 'hidden',
+                animation: `scaleIn 0.4s ease-out ${index * 0.1}s both`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = colors.borderAccent
+                e.currentTarget.style.transform = 'translateY(-2px)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = colors.borderSubtle
+                e.currentTarget.style.transform = 'translateY(0)'
               }}
             >
               <div
                 style={{
-                  fontSize: 26,
+                  fontSize: 32,
                   fontWeight: 800,
-                  letterSpacing: 1,
-                  color: '#facc15',
+                  letterSpacing: '-0.02em',
+                  background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  lineHeight: 1,
                 }}
               >
                 {stat.value.toLocaleString('es-ES')}
               </div>
               <div
                 style={{
-                  fontSize: 13,
-                  color: 'rgba(148,163,184,0.95)',
+                  fontSize: 12,
+                  color: colors.primary,
+                  fontWeight: 600,
                 }}
               >
                 {stat.suffix}
               </div>
               <div
                 style={{
-                  fontSize: 11,
+                  fontSize: 10,
+                  fontWeight: 600,
                   textTransform: 'uppercase',
-                  letterSpacing: 1.2,
-                  color: 'rgba(107,114,128,0.95)',
+                  letterSpacing: '0.1em',
+                  color: colors.textSubtle,
                 }}
               >
                 {stat.label}
