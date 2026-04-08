@@ -28,7 +28,7 @@ npm run preview  # Preview production build
 
 **Store Catalog**: `StoreCatalogService` fetches data from PocketBase via repositories (`StoreItemRepository`, `CurrencySettingsRepository`). Entity classes (`CardItem`, `DeckItem`, `AccessoryItem`) extend `StoreItem` base class.
 
-**PocketBase Integration**:
+**Supabase Integration**:
 - Collections: `cards`, `decks`, `accessories`, `currency_settings`
 - Client: `src/infrastructure/pocketbase/PocketBaseClient.ts`
 - Repositories: `src/infrastructure/repositories/`

@@ -325,9 +325,22 @@ export const StoreItemDetailsPage = () => {
               textTransform: 'uppercase',
               boxShadow: 'inset 0 2px 20px rgba(0, 0, 0, 0.2), 0 8px 40px rgba(0, 0, 0, 0.4)',
               marginBottom: spacing.xl,
+              overflow: 'hidden',
             }}
           >
-            {style.icon}
+            {item.imageUrl ? (
+              <img
+                src={item.imageUrl}
+                alt={item.name}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            ) : (
+              style.icon
+            )}
           </div>
 
           {/* Price Display */}

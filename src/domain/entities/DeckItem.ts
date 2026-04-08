@@ -11,6 +11,7 @@ export interface DeckItemParams {
   rarity: string
   priceUsd: number
   priceCup: number
+  imageUrl?: string | null
 }
 
 export class DeckItem extends StoreItem {

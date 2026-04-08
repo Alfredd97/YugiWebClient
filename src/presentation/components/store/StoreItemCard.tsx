@@ -80,7 +80,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
         }}
       />
 
-      {/* Product Icon */}
+      {/* Product Image */}
       <div
         style={{
           width: 72,
@@ -93,9 +93,22 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
           justifyContent: 'center',
           fontSize: 28,
           flexShrink: 0,
+          overflow: 'hidden',
         }}
       >
-        {style.icon}
+        {item.imageUrl ? (
+          <img
+            src={item.imageUrl}
+            alt={item.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        ) : (
+          style.icon
+        )}
       </div>
 
       {/* Product Info - Center */}

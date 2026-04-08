@@ -18,6 +18,7 @@ export class StoreItem {
   readonly expansionCode: string
   readonly rarity: string
   readonly price: StorePrice
+  readonly imageUrl?: string | null
 
   constructor(params: {
     id: string
@@ -31,6 +32,7 @@ export class StoreItem {
     rarity: string
     priceUsd: number
     priceCup: number
+    imageUrl?: string | null
   }) {
     this.id = params.id
     this.name = params.name
@@ -45,5 +47,6 @@ export class StoreItem {
       usd: params.priceUsd,
       cup: params.priceCup,
     }
+    this.imageUrl = params.imageUrl ?? null
   }
 }

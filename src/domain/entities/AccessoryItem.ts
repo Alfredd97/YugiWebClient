@@ -11,6 +11,7 @@ export interface AccessoryItemParams {
   rarity: string
   priceUsd: number
   priceCup: number
+  imageUrl?: string | null
 }
 
 export class AccessoryItem extends StoreItem {

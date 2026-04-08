@@ -13,6 +13,7 @@ interface DeckItemRecord {
   quantity: number
   price_usd: number
   price_cup: number
+  image_url?: string | null
 }
 
 export class DeckItemRepository {
@@ -56,6 +57,7 @@ export class DeckItemRepository {
       rarity: record.rarity,
       priceUsd: record.price_usd,
       priceCup: record.price_cup,
+      imageUrl: record.image_url,
     })
   }
 }

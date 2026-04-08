@@ -11,6 +11,7 @@ export interface CardItemParams {
   rarity: string
   priceUsd: number
   priceCup: number
+  imageUrl?: string | null
 }
 
 export class CardItem extends StoreItem {
