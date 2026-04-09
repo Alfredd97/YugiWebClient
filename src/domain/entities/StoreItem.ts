@@ -19,6 +19,7 @@ export class StoreItem {
   readonly rarity: string
   readonly price: StorePrice
   readonly imageUrl?: string | null
+  readonly createdAt: Date = new Date()
 
   constructor(params: {
     id: string

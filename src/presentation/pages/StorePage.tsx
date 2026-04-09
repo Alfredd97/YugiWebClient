@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import type { StoreItemCategory } from '../../domain/entities/StoreItem'
 import type { StoreItem } from '../../domain/entities/StoreItem'
@@ -14,6 +14,8 @@ const isValidCategory = (value: string | undefined): value is StoreItemCategory 
   return value === 'cards' || value === 'decks' || value === 'accessories'
 }
 
+type SortOrder = 'none' | 'recent' | 'price-asc' | 'price-desc' | 'name'
+
 export const StorePage = () => {
   const params = useParams()
   const rawCategory = params.category
@@ -21,13 +23,51 @@ export const StorePage = () => {
 
   const [items, setItems] = useState<StoreItem[]>([])
   const [loading, setLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState('')        // ← ADDED
+  const [sortOrder, setSortOrder] = useState<SortOrder>('none') 
 
   const activeCategory: StoreItemCategory = isValidCategory(rawCategory) ? rawCategory : 'cards'
 
   useEffect(() => {
     setLoading(true)
+    setSearchQuery('')     // ← ADDED: reset filters on category change
+    setSortOrder('none')   // ← ADDED
     catalog.getItemsByCategory(activeCategory).then(setItems).finally(() => setLoading(false))
   }, [activeCategory])
+
+  const displayedItems = useMemo(() => {
+    let result = [...items]
+
+    // Filter by search query (matches name or any string field)
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase()
+      result = result.filter((item) =>
+        item.name.toLowerCase().includes(q)
+      )
+    }
+
+    // Sort
+    switch (sortOrder) {
+      case 'price-asc':
+        result.sort((a, b) => a.price.usd - b.price.usd)
+        break
+      case 'price-desc':
+        result.sort((a, b) => b.price.usd - a.price.usd)
+        break
+      case 'name':
+        result.sort((a, b) => a.name.localeCompare(b.name))
+        break
+      case 'recent':
+        result.sort((a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        )
+        break
+      default:
+        break
+    }
+
+    return result
+  }, [items, searchQuery, sortOrder])
 
   if (!isValidCategory(rawCategory)) {
     return <Navigate to="/store/cards" replace />
@@ -189,6 +229,7 @@ export const StorePage = () => {
               <input
                 type="text"
                 placeholder="Buscar productos..."
+                value={searchQuery}
                 style={{
                   borderRadius: radii.md,
                   border: `1px solid ${colors.borderSubtle}`,
@@ -200,6 +241,7 @@ export const StorePage = () => {
                   outline: 'none',
                   transition: 'all var(--transition-fast)',
                 }}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = colors.primary
                   e.currentTarget.style.backgroundColor = 'rgba(15, 23, 42, 0.8)'
@@ -250,6 +292,8 @@ export const StorePage = () => {
                   backgroundPosition: 'right 12px center',
                   paddingRight: 40,
                 }}
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value as SortOrder)}
                 defaultValue="none"
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = colors.primary
@@ -287,7 +331,7 @@ export const StorePage = () => {
               }}
             />
             <span style={{ fontSize: 12, color: colors.textMuted, fontWeight: 500 }}>
-              {loading ? 'Cargando...' : `${items.length} productos`}
+              {loading ? 'Cargando...' : `${displayedItems.length} productos`}
             </span>
           </div>
         </div>
@@ -329,7 +373,7 @@ export const StorePage = () => {
               </div>
             ))}
           </>
-        ) : items.length === 0 ? (
+        ) : displayedItems.length === 0 ? (
           <div
             style={{
               gridColumn: '1 / -1',
@@ -361,7 +405,7 @@ export const StorePage = () => {
             </p>
           </div>
         ) : (
-          items.map((item) => <StoreItemCard key={item.id} item={item} />)
+          displayedItems.map((item) => <StoreItemCard key={item.id} item={item} />)
         )}
       </section>
     </Layout>
