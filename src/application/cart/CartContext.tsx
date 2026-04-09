@@ -86,6 +86,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       condition: '',
       expansionCode: '',
       rarity: '',
+      createdAt: new Date(),
     }
 
     const result = cartService.addItem(pseudoItem, quantity)
