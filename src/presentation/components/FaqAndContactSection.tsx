@@ -3,7 +3,7 @@ import { ContactChannel } from '../../domain/entities/ContactChannel'
 import { useTheme } from '../../theme/ThemeProvider'
 
 interface FaqAndContactSectionProps {
-  faqs: FaqItem[]
+  faqs?: FaqItem[]
   contactChannels: ContactChannel[]
 }
 
@@ -17,117 +17,12 @@ export const FaqAndContactSection = ({
     <section
       style={{
         marginBottom: spacing.sectionPaddingY,
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)',
-        gap: spacing.xxl,
-        alignItems: 'flex-start',
       }}
     >
-      <div>
-        <h2
-          style={{
-            fontSize: 32,
-            lineHeight: 1.2,
-            fontWeight: 700,
-            margin: 0,
-            marginBottom: spacing.sm,
-            background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
-        >
-          Contactar
-        </h2>
-        <p
-          style={{
-            fontSize: 16,
-            color: colors.textMuted,
-            maxWidth: 520,
-            marginBottom: spacing.lg,
-            lineHeight: 1.6,
-          }}
-        >
-          Siempre estamos a disposición de la comunidad. Puede contactarnos para presentar quejas,
-          sugerencias o agradecer nuestro trabajo.
-        </p>
-
-        <div
-          style={{
-            borderRadius: radii.xl,
-            border: `1px solid ${colors.borderStrong}`,
-            background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%)',
-            backdropFilter: 'blur(20px)',
-            padding: spacing.lg,
-            boxShadow: shadows.medium,
-            maxHeight: 400,
-            overflow: 'auto',
-          }}
-        >
-          {faqs.map((faq) => (
-            <details
-              key={faq.id}
-              style={{
-                borderBottom: `1px solid ${colors.borderSubtle}`,
-                padding: `${spacing.md}px 0`,
-              }}
-            >
-              <summary
-                style={{
-                  cursor: 'pointer',
-                  listStyle: 'none',
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  justifyContent: 'space-between',
-                  gap: spacing.md,
-                  fontWeight: 600,
-                  fontSize: 14,
-                  color: colors.text,
-                  transition: 'color var(--transition-fast)',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = colors.primary)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = colors.text)}
-              >
-                <span style={{ flex: 1 }}>{faq.question}</span>
-                <span
-                  aria-hidden
-                  style={{
-                    width: 22,
-                    height: 22,
-                    borderRadius: '50%',
-                    border: `1px solid ${colors.borderStrong}`,
-                    background: 'rgba(15, 23, 42, 0.5)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: 12,
-                    color: colors.primary,
-                    flexShrink: 0,
-                    transition: 'all var(--transition-fast)',
-                  }}
-                >
-                  ?
-                </span>
-              </summary>
-              <p
-                style={{
-                  marginTop: spacing.sm,
-                  marginBottom: 0,
-                  fontSize: 14,
-                  color: colors.textMuted,
-                  lineHeight: 1.6,
-                }}
-              >
-                {faq.answer}
-              </p>
-            </details>
-          ))}
-        </div>
-      </div>
-
       <div
         style={{
           display: 'grid',
+          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
           gap: spacing.md,
         }}
       >

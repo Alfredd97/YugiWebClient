@@ -105,36 +105,6 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
             onClick={() => navigate('/store/cards')}
             style={{
               borderRadius: radii.pill,
-              border: 'none',
-              padding: '14px 32px',
-              background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fb923c 100%)',
-              color: '#0a0e1a',
-              fontWeight: 700,
-              fontSize: 14,
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              boxShadow: '0 4px 24px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2)',
-              transition: 'all var(--transition-base)',
-              position: 'relative',
-              overflow: 'hidden',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)'
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(251, 191, 36, 0.5), 0 0 60px rgba(251, 191, 36, 0.3)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = '0 4px 24px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2)'
-            }}
-          >
-            {hero.primaryCtaLabel}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => navigate('/store/cards')}
-            style={{
-              borderRadius: radii.pill,
               border: `1px solid ${colors.borderStrong}`,
               padding: '14px 32px',
               background: 'rgba(15, 23, 42, 0.5)',
@@ -246,7 +216,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                     backgroundClip: 'text',
                   }}
                 >
-                  Slifer · Obelisk · Ra
+                  Cartas · Decks · Accesorios
                 </div>
               </div>
 
@@ -286,7 +256,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                 gap: spacing.md,
               }}
             >
-              {['Slifer', 'Obelisk', 'Ra'].map((name, index) => {
+              {['Cartas', 'Decks', 'Accesorios'].map((name, index) => {
                 const gradients = [
                   'linear-gradient(145deg, #dc2626, #f97316)',
                   'linear-gradient(145deg, #4f46e5, #06b6d4)',
@@ -349,7 +319,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                         textAlign: 'center',
                       }}
                     >
-                      Dios egipcio
+                      Comprar
                     </div>
                   </div>
                 )
