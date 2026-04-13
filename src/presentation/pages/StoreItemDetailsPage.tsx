@@ -316,7 +316,6 @@ export const StoreItemDetailsPage = () => {
               borderRadius: radii.lg,
               border: `1px solid ${style.border}`,
               background: style.gradient,
-              height: 200,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -335,8 +334,8 @@ export const StoreItemDetailsPage = () => {
                 alt={item.name}
                 style={{
                   width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
+                  height: 'auto',
+                  display: 'block',
                 }}
               />
             ) : (
