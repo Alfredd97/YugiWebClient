@@ -84,16 +84,17 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
       {/* Product Image */}
       <div
         style={{
-          width: 72,
-          height: 72,
+          width: 90,
+          height: 90,
           borderRadius: radii.md,
-          border: `1px solid ${style.border}`,
-          background: style.gradient,
+          border: `1px solid ${colors.borderSubtle}`,
+          background: 'transparent',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: 28,
           flexShrink: 0,
+          alignSelf: 'center',
           overflow: 'hidden',
         }}
       >
@@ -104,7 +105,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover',
+              objectFit: 'contain',
             }}
           />
         ) : (
@@ -128,7 +129,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
             display: 'flex',
             alignItems: 'center',
             gap: 6,
-            flexWrap: 'nowrap',
+            flexWrap: 'wrap',
           }}
         >
           <h3
@@ -138,9 +139,6 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
               fontWeight: 700,
               color: colors.text,
               lineHeight: 1.3,
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
             }}
           >
             {item.name}
