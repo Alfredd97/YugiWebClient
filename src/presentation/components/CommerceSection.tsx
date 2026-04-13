@@ -5,7 +5,7 @@ import { useTheme } from '../../theme/ThemeProvider'
 
 interface CommerceSectionProps {
   categories: ProductCategory[]
-  benefits: CommerceBenefit[]
+  benefits?: CommerceBenefit[]
 }
 
 export const CommerceSection = ({ categories, benefits }: CommerceSectionProps) => {
@@ -17,105 +17,12 @@ export const CommerceSection = ({ categories, benefits }: CommerceSectionProps) 
       className="commerce-section"
       style={{
         marginBottom: spacing.sectionPaddingY,
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0, 2.5fr) minmax(0, 3fr)',
-        gap: spacing.xxl,
-        alignItems: 'flex-start',
-        position: 'relative',
       }}
     >
-      <div>
-        <h2
-          style={{
-            fontSize: 32,
-            lineHeight: 1.2,
-            fontWeight: 700,
-            margin: 0,
-            marginBottom: spacing.sm,
-            background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
-        >
-          Comerciar
-        </h2>
-        <p
-          style={{
-            fontSize: 16,
-            color: colors.textMuted,
-            maxWidth: 520,
-            marginBottom: spacing.lg,
-            lineHeight: 1.6,
-          }}
-        >
-          Comercio de cartas, decks o accesorios de YU-GI-OH. Acceso a contactar con vendedores
-          potenciales. Únase al duelo de monstruos.
-        </p>
-
-        <div
-          style={{
-            display: 'grid',
-            gap: spacing.md,
-          }}
-        >
-          {benefits.map((benefit, index) => (
-            <div
-              key={benefit.id}
-              style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: spacing.md,
-                padding: spacing.md,
-                borderRadius: radii.lg,
-                background: 'rgba(15, 23, 42, 0.3)',
-                border: `1px solid ${colors.borderSubtle}`,
-                transition: 'all var(--transition-base)',
-                animation: `fadeInRight 0.4s ease-out ${index * 0.1}s both`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(30, 41, 59, 0.5)'
-                e.currentTarget.style.borderColor = colors.accentGreen
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(15, 23, 42, 0.3)'
-                e.currentTarget.style.borderColor = colors.borderSubtle
-              }}
-            >
-              <span
-                aria-hidden
-                style={{
-                  width: 20,
-                  height: 20,
-                  borderRadius: '50%',
-                  background: `linear-gradient(135deg, ${colors.accentGreen}, #22c55e)`,
-                  marginTop: 2,
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: `0 0 15px ${colors.accentGreen}66`,
-                  fontSize: 11,
-                  color: '#0a0e1a',
-                  fontWeight: 700,
-                }}
-              >
-                ✓
-              </span>
-              <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5 }}>
-                <span style={{ fontWeight: 600, color: colors.text }}>
-                  {benefit.title}
-                </span>{' '}
-                <span style={{ color: colors.textMuted }}>– {benefit.description}</span>
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <div
         style={{
           display: 'grid',
+          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
           gap: spacing.md,
         }}
       >

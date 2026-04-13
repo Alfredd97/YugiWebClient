@@ -42,7 +42,7 @@ export const AddToCartButton = ({
   }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', width: '100%' }}>
       <button
         type="button"
         onClick={(e) => {
@@ -51,6 +51,7 @@ export const AddToCartButton = ({
         }}
         disabled={isDisabled}
         style={{
+          width: '100%',
           borderRadius: radii.pill,
           border: 'none',
           padding: buttonStyles[size].padding,

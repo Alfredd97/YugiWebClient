@@ -184,36 +184,6 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
             >
               Inicio
             </button>
-            <button
-              type="button"
-              style={{
-                borderRadius: radii.pill,
-                border: 'none',
-                padding: '8px 16px',
-                background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fb923c 100%)',
-                color: '#0a0e1a',
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                boxShadow: '0 4px 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2)',
-                transition: 'all var(--transition-base)',
-                position: 'relative',
-                overflow: 'hidden',
-                display: 'none',
-              }}
-              className="desktop-only"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = '0 8px 30px rgba(251, 191, 36, 0.5), 0 0 60px rgba(251, 191, 36, 0.3)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2)'
-              }}
-            >
-              Iniciar sesión
-            </button>
           </div>
         </div>
       </header>
