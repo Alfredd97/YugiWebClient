@@ -8,7 +8,7 @@ interface CartModalProps {
   onCheckout?: () => void
 }
 
-const DEFAULT_PHONE_NUMBER = '+5353623168' // TODO: Configure via environment variable
+const DEFAULT_PHONE_NUMBER = import.meta.env.VITE_WHATSAPP_PHONE as string
 
 export const CartModal = ({
   phoneNumber,

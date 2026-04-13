@@ -10,7 +10,7 @@ import { CheckoutService } from '../../application/messaging/CheckoutService'
 import type { CartItem } from '../../domain/entities/CartItem'
 
 const catalog = new StoreCatalogService()
-const DEFAULT_PHONE_NUMBER = '+5353623168'
+const DEFAULT_PHONE_NUMBER = import.meta.env.VITE_WHATSAPP_PHONE as string
 
 const isValidCategory = (value: string | undefined): value is StoreItemCategory => {
   return value === 'cards' || value === 'decks' || value === 'accessories'

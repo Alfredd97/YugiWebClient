@@ -6,7 +6,7 @@ import { CartModal } from './cart/CartModal'
 import { Toast } from './cart/Toast'
 import { useCart } from '../../application/cart/CartContext'
 
-const DEFAULT_PHONE_NUMBER = '+5353623168' // TODO: Configure via environment variable
+const DEFAULT_PHONE_NUMBER = import.meta.env.VITE_WHATSAPP_PHONE as string
 
 interface LayoutProps {
   children: ReactNode
