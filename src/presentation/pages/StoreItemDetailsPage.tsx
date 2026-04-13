@@ -10,7 +10,7 @@ import { CheckoutService } from '../../application/messaging/CheckoutService'
 import type { CartItem } from '../../domain/entities/CartItem'
 
 const catalog = new StoreCatalogService()
-const DEFAULT_PHONE_NUMBER = '5350000000'
+const DEFAULT_PHONE_NUMBER = '+5353623168'
 
 const isValidCategory = (value: string | undefined): value is StoreItemCategory => {
   return value === 'cards' || value === 'decks' || value === 'accessories'
@@ -97,10 +97,11 @@ export const StoreItemDetailsPage = () => {
   return (
     <Layout>
       <section
+        className="product-details-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'minmax(0, 1.4fr) minmax(0, 1fr)',
-          gap: spacing.xxl,
+          gap: spacing.xl,
           marginBottom: spacing.sectionPaddingY,
           alignItems: 'start',
         }}

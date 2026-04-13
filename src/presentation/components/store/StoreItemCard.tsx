@@ -53,6 +53,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
         overflow: 'hidden',
         minHeight: 120,
       }}
+      className="store-item-card"
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = style.border
         e.currentTarget.style.transform = 'translateY(-2px)'

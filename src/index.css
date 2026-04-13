@@ -101,6 +101,126 @@ img {
   display: block;
 }
 
+/* Responsive utilities */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-full {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+  .tablet-stack {
+    flex-direction: column !important;
+  }
+}
+
+/* Mobile store grid */
+@media (max-width: 640px) {
+  .store-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .store-item-card {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .store-item-card > div:last-child {
+    width: 100% !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(51, 65, 85, 0.3) !important;
+    padding-top: 8px !important;
+    padding-left: 0 !important;
+  }
+
+  .product-details-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .filters-panel {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .filters-panel > div:first-child {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .filters-panel label {
+    width: 100% !important;
+  }
+
+  /* Home page responsive */
+  .hero-section,
+  .features-section,
+  .commerce-section,
+  .faq-contact-section,
+  .community-section {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  .hero-section h1 {
+    font-size: 36px !important;
+  }
+
+  .hero-section p {
+    max-width: 100% !important;
+  }
+
+  .features-section h2,
+  .commerce-section h2,
+  .faq-contact-section h2,
+  .community-section h2 {
+    font-size: 24px !important;
+  }
+
+  .commerce-article {
+    grid-template-columns: 1fr !important;
+  }
+
+  .statistics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .hero-section h1 {
+    font-size: 28px !important;
+  }
+
+  .section-title {
+    font-size: 22px !important;
+  }
+
+  .statistics-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 button {
   font-family: inherit;
   cursor: pointer;

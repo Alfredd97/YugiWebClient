@@ -14,6 +14,7 @@ export const CommerceSection = ({ categories, benefits }: CommerceSectionProps) 
 
   return (
     <section
+      className="commerce-section"
       style={{
         marginBottom: spacing.sectionPaddingY,
         display: 'grid',
@@ -142,6 +143,7 @@ export const CommerceSection = ({ categories, benefits }: CommerceSectionProps) 
           return (
             <article
               key={category.id}
+              className="commerce-article"
               style={{
                 borderRadius: radii.xl,
                 border: `1px solid ${colors.borderStrong}`,

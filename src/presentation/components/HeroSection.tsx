@@ -12,6 +12,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
 
   return (
     <section
+      className="hero-section"
       style={{
         display: 'grid',
         gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)',

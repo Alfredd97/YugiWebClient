@@ -8,7 +8,7 @@ interface CartModalProps {
   onCheckout?: () => void
 }
 
-const DEFAULT_PHONE_NUMBER = '5350000000' // TODO: Configure via environment variable
+const DEFAULT_PHONE_NUMBER = '+5353623168' // TODO: Configure via environment variable
 
 export const CartModal = ({
   phoneNumber,

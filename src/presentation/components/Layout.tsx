@@ -6,7 +6,7 @@ import { CartModal } from './cart/CartModal'
 import { Toast } from './cart/Toast'
 import { useCart } from '../../application/cart/CartContext'
 
-const DEFAULT_PHONE_NUMBER = '5350000000' // TODO: Configure via environment variable
+const DEFAULT_PHONE_NUMBER = '+5353623168' // TODO: Configure via environment variable
 
 interface LayoutProps {
   children: ReactNode
@@ -70,13 +70,14 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
           style={{
             maxWidth: 1120,
             margin: '0 auto',
-            padding: `${spacing.lg}px ${spacing.xl}px`,
+            padding: `${spacing.md}px ${spacing.lg}px`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: spacing.lg,
+            gap: spacing.md,
           }}
         >
+          {/* Logo - Hidden on mobile, shows only icon */}
           <button
             type="button"
             onClick={() => navigate('/')}
@@ -95,8 +96,8 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
           >
             <div
               style={{
-                width: 44,
-                height: 44,
+                width: 40,
+                height: 40,
                 borderRadius: '50%',
                 border: `2px solid ${colors.primary}`,
                 display: 'flex',
@@ -109,7 +110,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
             >
               <span
                 style={{
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: 800,
                   letterSpacing: '0.5px',
                   color: '#0a0e1a',
@@ -118,7 +119,8 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
                 YF
               </span>
             </div>
-            <div style={{ textAlign: 'left' }}>
+            {/* Brand text - hidden on mobile */}
+            <div style={{ textAlign: 'left', display: 'none' }} className="desktop-only">
               <div
                 style={{
                   fontWeight: 700,
@@ -159,16 +161,18 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
               style={{
                 borderRadius: radii.pill,
                 border: `1px solid ${colors.borderStrong}`,
-                padding: '10px 18px',
+                padding: '8px 14px',
                 background: 'rgba(15, 23, 42, 0.5)',
                 backdropFilter: 'blur(8px)',
                 color: colors.text,
                 fontWeight: 600,
-                fontSize: 13,
+                fontSize: 12,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 transition: 'all var(--transition-base)',
+                display: 'none',
               }}
+              className="desktop-only"
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'rgba(30, 41, 59, 0.7)'
                 e.currentTarget.style.borderColor = colors.primary
@@ -185,18 +189,20 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
               style={{
                 borderRadius: radii.pill,
                 border: 'none',
-                padding: '10px 22px',
+                padding: '8px 16px',
                 background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fb923c 100%)',
                 color: '#0a0e1a',
                 fontWeight: 700,
-                fontSize: 13,
+                fontSize: 12,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 boxShadow: '0 4px 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2)',
                 transition: 'all var(--transition-base)',
                 position: 'relative',
                 overflow: 'hidden',
+                display: 'none',
               }}
+              className="desktop-only"
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)'
                 e.currentTarget.style.boxShadow = '0 8px 30px rgba(251, 191, 36, 0.5), 0 0 60px rgba(251, 191, 36, 0.3)'
@@ -216,7 +222,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
         style={{
           maxWidth: 1120,
           margin: '0 auto',
-          padding: `${spacing.xxl}px ${spacing.xl}px ${spacing.sectionPaddingY}px`,
+          padding: `${spacing.xl}px ${spacing.lg}px ${spacing.sectionPaddingY}px`,
           position: 'relative',
           zIndex: 1,
         }}

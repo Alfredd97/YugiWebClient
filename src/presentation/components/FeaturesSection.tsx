@@ -12,6 +12,7 @@ export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) 
 
   return (
     <section
+      className="features-section"
       style={{
         marginBottom: spacing.sectionPaddingY,
         display: 'grid',

@@ -182,6 +182,7 @@ export const StorePage = () => {
 
         {/* Filters Panel */}
         <div
+          className="filters-panel"
           style={{
             borderRadius: radii.xl,
             border: `1px solid ${colors.borderStrong}`,
@@ -203,6 +204,7 @@ export const StorePage = () => {
               gap: spacing.lg,
               flex: 1,
               minWidth: 0,
+              width: '100%',
             }}
           >
             <label
@@ -340,9 +342,10 @@ export const StorePage = () => {
       <section
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-          gap: spacing.lg,
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: spacing.md,
         }}
+        className="store-grid"
       >
         {loading ? (
           <>
