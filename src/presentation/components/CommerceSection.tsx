@@ -8,7 +8,7 @@ interface CommerceSectionProps {
   benefits?: CommerceBenefit[]
 }
 
-export const CommerceSection = ({ categories, benefits }: CommerceSectionProps) => {
+export const CommerceSection = ({ categories }: CommerceSectionProps) => {
   const { spacing, colors, radii, shadows } = useTheme()
   const navigate = useNavigate()
 
