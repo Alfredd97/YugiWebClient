@@ -8,7 +8,6 @@ interface FaqAndContactSectionProps {
 }
 
 export const FaqAndContactSection = ({
-  faqs,
   contactChannels,
 }: FaqAndContactSectionProps) => {
   const { spacing, colors, radii, shadows } = useTheme()
