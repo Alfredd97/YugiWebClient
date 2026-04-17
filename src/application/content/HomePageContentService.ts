@@ -38,14 +38,9 @@ export class HomePageContentService {
             'Tenemos el objetivo de agrupar a toda la comunidad de YU-GI-OH y hacer de esta una gran nación.',
         }),
         new Feature({
-          id: 'events',
-          title: 'Generar eventos',
-          description: 'Organización de eventos para que la comunidad comparta y compita.',
-        }),
-        new Feature({
           id: 'card-trade',
           title: 'Comercio de cartas',
-          description: 'Accede a las mejores cartas del mercado y comercia con otros duelistas.',
+          description: 'Accede a las mejores cartas del mercado',
         }),
         new Feature({
           id: 'deck-trade',
