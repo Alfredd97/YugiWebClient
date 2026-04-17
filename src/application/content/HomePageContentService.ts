@@ -215,14 +215,14 @@ export class HomePageContentService {
       ],
       developers: [
         new DeveloperProfile({
-          id: 'mangel',
-          name: 'Mangel',
+          id: 'joseraul',
+          name: 'Jose Raul',
           role: 'Jefe de proyecto y desarrollador',
           order: 1,
         }),
         new DeveloperProfile({
-          id: 'mauro',
-          name: 'Mauro',
+          id: 'alfredd',
+          name: 'Alfredd',
           role: 'Desarrollador',
           order: 2,
         }),
