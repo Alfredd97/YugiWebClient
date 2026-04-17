@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
+import logoYugi from '../../assets/LogoYugi.jpg'
 import { useTheme } from '../../theme/ThemeProvider'
 import { CartButton } from './cart/CartButton'
 import { CartModal } from './cart/CartModal'
@@ -94,31 +95,19 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.02)')}
             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           >
-            <div
+            <img
+              src={logoYugi}
+              alt="Yugi Faction"
               style={{
-                width: 40,
-                height: 40,
+                width: 56,
+                height: 56,
                 borderRadius: '50%',
                 border: `2px solid ${colors.primary}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #f59e0b 100%)',
-                boxShadow: '0 0 30px rgba(251, 191, 36, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 0 30px rgba(251, 191, 36, 0.5)',
+                objectFit: 'cover',
                 flexShrink: 0,
               }}
-            >
-              <span
-                style={{
-                  fontSize: 16,
-                  fontWeight: 800,
-                  letterSpacing: '0.5px',
-                  color: '#0a0e1a',
-                }}
-              >
-                YF
-              </span>
-            </div>
+            />
             {/* Brand text - hidden on mobile */}
             <div style={{ textAlign: 'left', display: 'none' }} className="desktop-only">
               <div

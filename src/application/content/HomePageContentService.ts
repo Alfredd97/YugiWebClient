@@ -1,6 +1,5 @@
 import { HeroContent } from '../../domain/entities/HeroContent'
 import { Feature } from '../../domain/entities/Feature'
-import { Statistic } from '../../domain/entities/Statistic'
 import { ProductCategory } from '../../domain/entities/ProductCategory'
 import { CommerceBenefit } from '../../domain/entities/CommerceBenefit'
 import { FaqItem } from '../../domain/entities/FaqItem'
@@ -11,7 +10,6 @@ import { Donor } from '../../domain/entities/Donor'
 export interface HomePageContent {
   hero: HeroContent
   features: Feature[]
-  statistics: Statistic[]
   categories: ProductCategory[]
   commerceBenefits: CommerceBenefit[]
   faqs: FaqItem[]
@@ -38,14 +36,9 @@ export class HomePageContentService {
             'Tenemos el objetivo de agrupar a toda la comunidad de YU-GI-OH y hacer de esta una gran nación.',
         }),
         new Feature({
-          id: 'events',
-          title: 'Generar eventos',
-          description: 'Organización de eventos para que la comunidad comparta y compita.',
-        }),
-        new Feature({
           id: 'card-trade',
           title: 'Comercio de cartas',
-          description: 'Accede a las mejores cartas del mercado y comercia con otros duelistas.',
+          description: 'Accede a las mejores cartas del mercado',
         }),
         new Feature({
           id: 'deck-trade',
@@ -61,32 +54,6 @@ export class HomePageContentService {
           id: 'donations',
           title: 'Donaciones voluntarias',
           description: 'Apoya el proyecto para que siga creciendo y ofreciendo mejores servicios.',
-        }),
-      ],
-      statistics: [
-        new Statistic({
-          id: 'donations',
-          label: 'Donaciones',
-          value: 5,
-          suffix: ' donaciones',
-        }),
-        new Statistic({
-          id: 'cards',
-          label: 'Comercio de cartas',
-          value: 2602,
-          suffix: ' cartas',
-        }),
-        new Statistic({
-          id: 'decks',
-          label: 'Comercio de decks',
-          value: 74,
-          suffix: ' decks',
-        }),
-        new Statistic({
-          id: 'accessories',
-          label: 'Comercio de accesorios',
-          value: 23,
-          suffix: ' accesorios',
         }),
       ],
       categories: [
@@ -215,14 +182,14 @@ export class HomePageContentService {
       ],
       developers: [
         new DeveloperProfile({
-          id: 'mangel',
-          name: 'Mangel',
+          id: 'jose-raul',
+          name: 'Jose Raul',
           role: 'Jefe de proyecto y desarrollador',
           order: 1,
         }),
         new DeveloperProfile({
-          id: 'mauro',
-          name: 'Mauro',
+          id: 'alfredd',
+          name: 'Alfredd',
           role: 'Desarrollador',
           order: 2,
         }),

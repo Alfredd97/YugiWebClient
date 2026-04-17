@@ -5,7 +5,6 @@ import { type StoreGameFormat } from '../../domain/entities/StoreItem'
 interface AccessoryItemRecord {
   id: string
   name: string
-  seller_name: string
   game_format: StoreGameFormat
   condition: string
   expansion_code: string
@@ -50,7 +49,6 @@ export class AccessoryItemRepository {
       id: record.id,
       name: record.name,
       quantity: record.quantity,
-      sellerName: record.seller_name,
       gameFormat: record.game_format,
       condition: record.condition,
       expansionCode: record.expansion_code,

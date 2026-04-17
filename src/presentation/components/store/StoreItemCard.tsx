@@ -172,13 +172,6 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
             overflow: 'hidden',
           }}
         >
-          <span style={{ display: 'flex', alignItems: 'center', gap: 4, whiteSpace: 'nowrap' }}>
-            <span style={{ width: 3, height: 3, borderRadius: '50%', background: colors.accentGreen }} />
-            <span style={{ color: colors.text, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 120 }}>
-              {item.sellerName}
-            </span>
-          </span>
-          <span style={{ color: colors.borderSubtle, flexShrink: 0 }}>·</span>
           <span style={{ whiteSpace: 'nowrap' }}>
             <span style={{ color: colors.text, fontWeight: 500 }}>{item.condition}</span>
           </span>

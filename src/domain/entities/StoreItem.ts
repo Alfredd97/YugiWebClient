@@ -12,7 +12,6 @@ export class StoreItem {
   readonly name: string
   readonly category: StoreItemCategory
   readonly quantity: number
-  readonly sellerName: string
   readonly gameFormat: StoreGameFormat
   readonly condition: string
   readonly expansionCode: string
@@ -26,7 +25,6 @@ export class StoreItem {
     name: string
     category: StoreItemCategory
     quantity: number
-    sellerName: string
     gameFormat: StoreGameFormat
     condition: string
     expansionCode: string
@@ -39,7 +37,6 @@ export class StoreItem {
     this.name = params.name
     this.category = params.category
     this.quantity = params.quantity
-    this.sellerName = params.sellerName
     this.gameFormat = params.gameFormat
     this.condition = params.condition
     this.expansionCode = params.expansionCode

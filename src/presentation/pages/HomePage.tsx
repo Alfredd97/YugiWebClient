@@ -14,7 +14,7 @@ export const HomePage = () => {
   return (
     <Layout>
       <HeroSection hero={content.hero} />
-      <FeaturesSection features={content.features} statistics={content.statistics} />
+      <FeaturesSection features={content.features} />
       <CommerceSection categories={content.categories} benefits={content.commerceBenefits} />
       <FaqAndContactSection
         faqs={content.faqs}

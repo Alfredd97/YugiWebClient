@@ -4,7 +4,6 @@ export interface CardItemParams {
   id: string
   name: string
   quantity: number
-  sellerName: string
   gameFormat: StoreGameFormat
   condition: string
   expansionCode: string

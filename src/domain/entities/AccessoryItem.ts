@@ -4,7 +4,6 @@ export interface AccessoryItemParams {
   id: string
   name: string
   quantity: number
-  sellerName: string
   gameFormat: StoreGameFormat
   condition: string
   expansionCode: string

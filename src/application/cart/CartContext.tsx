@@ -81,7 +81,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       category,
       price,
       quantity: maxAvailable,
-      sellerName: '',
       gameFormat: 'TCG' as const,
       condition: '',
       expansionCode: '',

@@ -1,24 +1,18 @@
 import { Feature } from '../../domain/entities/Feature'
-import { Statistic } from '../../domain/entities/Statistic'
 import { useTheme } from '../../theme/ThemeProvider'
 
 interface FeaturesSectionProps {
   features: Feature[]
-  statistics: Statistic[]
 }
 
-export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) => {
-  const { spacing, colors, radii, shadows } = useTheme()
+export const FeaturesSection = ({ features }: FeaturesSectionProps) => {
+  const { spacing, colors, radii } = useTheme()
 
   return (
     <section
       className="features-section"
       style={{
         marginBottom: spacing.sectionPaddingY,
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)',
-        gap: spacing.xxl,
-        alignItems: 'flex-start',
         position: 'relative',
       }}
     >
@@ -128,100 +122,6 @@ export const FeaturesSection = ({ features, statistics }: FeaturesSectionProps) 
         </ul>
       </div>
 
-      <div
-        style={{
-          borderRadius: radii.xl,
-          border: `1px solid ${colors.borderStrong}`,
-          background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%)',
-          backdropFilter: 'blur(20px)',
-          padding: spacing.xl,
-          boxShadow: shadows.strong,
-          display: 'grid',
-          gap: spacing.lg,
-        }}
-      >
-        <h3
-          style={{
-            margin: 0,
-            fontSize: 12,
-            fontWeight: 700,
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            color: colors.textMuted,
-          }}
-        >
-          Números de la comunidad
-        </h3>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-            gap: spacing.md,
-          }}
-        >
-          {statistics.map((stat, index) => (
-            <div
-              key={stat.id}
-              style={{
-                borderRadius: radii.lg,
-                border: `1px solid ${colors.borderSubtle}`,
-                background: 'rgba(2, 6, 23, 0.5)',
-                padding: spacing.lg,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: spacing.xs,
-                transition: 'all var(--transition-base)',
-                position: 'relative',
-                overflow: 'hidden',
-                animation: `scaleIn 0.4s ease-out ${index * 0.1}s both`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = colors.borderAccent
-                e.currentTarget.style.transform = 'translateY(-2px)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = colors.borderSubtle
-                e.currentTarget.style.transform = 'translateY(0)'
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 32,
-                  fontWeight: 800,
-                  letterSpacing: '-0.02em',
-                  background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  lineHeight: 1,
-                }}
-              >
-                {stat.value.toLocaleString('es-ES')}
-              </div>
-              <div
-                style={{
-                  fontSize: 12,
-                  color: colors.primary,
-                  fontWeight: 600,
-                }}
-              >
-                {stat.suffix}
-              </div>
-              <div
-                style={{
-                  fontSize: 10,
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  color: colors.textSubtle,
-                }}
-              >
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   )
 }
