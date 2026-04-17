@@ -420,3 +420,8 @@ button {
   background-clip: text;
 }
 
+/* Deck image carousel */
+div:has(> .carousel-btn):hover .carousel-btn {
+  opacity: 1 !important;
+}
+

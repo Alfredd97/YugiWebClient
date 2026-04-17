@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { StoreItem } from '../../../domain/entities/StoreItem'
+import type { DeckItem } from '../../../domain/entities/DeckItem'
 import { useTheme } from '../../../theme/ThemeProvider'
 import { AddToCartButton } from '../cart/AddToCartButton'
 
@@ -10,6 +12,11 @@ interface StoreItemCardProps {
 export const StoreItemCard = ({ item }: StoreItemCardProps) => {
   const { spacing, colors, radii, shadows } = useTheme()
   const navigate = useNavigate()
+  const [carouselIndex, setCarouselIndex] = useState(0)
+
+  const deckImages = item.category === 'decks' ? (item as DeckItem).imageUrls : []
+  const hasCarousel = deckImages.length > 1
+  const activeImage = hasCarousel ? deckImages[carouselIndex] : item.imageUrl
 
   const categoryStyles = {
     cards: {
@@ -81,7 +88,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
         }}
       />
 
-      {/* Product Image */}
+      {/* Product Image / Carousel */}
       <div
         style={{
           width: 90,
@@ -90,26 +97,106 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
           border: `1px solid ${colors.borderSubtle}`,
           background: 'transparent',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: 28,
           flexShrink: 0,
           alignSelf: 'center',
           overflow: 'hidden',
+          position: 'relative',
         }}
       >
-        {item.imageUrl ? (
+        {activeImage ? (
           <img
-            src={item.imageUrl}
-            alt={item.name}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-            }}
+            src={activeImage}
+            alt={`${item.name} ${hasCarousel ? carouselIndex + 1 : ''}`}
+            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
           />
         ) : (
           style.icon
+        )}
+        {hasCarousel && (
+          <>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                setCarouselIndex((i) => (i - 1 + deckImages.length) % deckImages.length)
+              }}
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 16,
+                width: 28,
+                background: 'rgba(0,0,0,0.4)',
+                border: 'none',
+                color: '#fff',
+                fontSize: 10,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                opacity: 0,
+                transition: 'opacity 0.15s',
+              }}
+              className="carousel-btn"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                setCarouselIndex((i) => (i + 1) % deckImages.length)
+              }}
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                bottom: 16,
+                width: 28,
+                background: 'rgba(0,0,0,0.4)',
+                border: 'none',
+                color: '#fff',
+                fontSize: 10,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                opacity: 0,
+                transition: 'opacity 0.15s',
+              }}
+              className="carousel-btn"
+            >
+              ›
+            </button>
+            <div
+              style={{
+                position: 'absolute',
+                bottom: 2,
+                left: 0,
+                right: 0,
+                display: 'flex',
+                justifyContent: 'center',
+                gap: 3,
+              }}
+            >
+              {deckImages.map((_, i) => (
+                <span
+                  key={i}
+                  style={{
+                    width: i === carouselIndex ? 10 : 4,
+                    height: 4,
+                    borderRadius: 2,
+                    background: i === carouselIndex ? '#fbbf24' : 'rgba(255,255,255,0.4)',
+                    transition: 'all 0.2s',
+                  }}
+                />
+              ))}
+            </div>
+          </>
         )}
       </div>
 

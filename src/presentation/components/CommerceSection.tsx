@@ -71,6 +71,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                 e.currentTarget.style.transform = 'translateX(-4px)'
                 e.currentTarget.style.boxShadow = `${shadows.medium}, ${style.glow}`
               }}
+              onClick={() => navigate(`/store/${category.type}`)}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = colors.borderStrong
                 e.currentTarget.style.transform = 'translateX(0)'

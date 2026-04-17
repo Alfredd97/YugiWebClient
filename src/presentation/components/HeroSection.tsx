@@ -256,7 +256,8 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                 gap: spacing.md,
               }}
             >
-              {['Cartas', 'Decks', 'Accesorios'].map((name, index) => {
+              {(['Cartas', 'Decks', 'Accesorios'] as const).map((name, index) => {
+                const routes = ['/store/cards', '/store/decks', '/store/accessories']
                 const gradients = [
                   'linear-gradient(145deg, #dc2626, #f97316)',
                   'linear-gradient(145deg, #4f46e5, #06b6d4)',
@@ -271,6 +272,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                 return (
                   <div
                     key={name}
+                    onClick={() => navigate(routes[index])}
                     style={{
                       position: 'relative',
                       borderRadius: radii.lg,

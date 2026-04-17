@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import type { StoreItemCategory } from '../../domain/entities/StoreItem'
 import type { StoreItem } from '../../domain/entities/StoreItem'
+import type { DeckItem } from '../../domain/entities/DeckItem'
 import { StoreCatalogService } from '../../application/store/StoreCatalogService'
 import { Layout } from '../components/Layout'
 import { useTheme } from '../../theme/ThemeProvider'
@@ -23,6 +24,7 @@ export const StoreItemDetailsPage = () => {
 
   const [item, setItem] = useState<StoreItem | null>(null)
   const [loading, setLoading] = useState(true)
+  const [carouselIndex, setCarouselIndex] = useState(0)
 
   const rawCategory = params.category
   const id = params.id
@@ -299,37 +301,109 @@ export const StoreItemDetailsPage = () => {
           }}
         >
           {/* Product Visual */}
-          <div
-            style={{
-              borderRadius: radii.lg,
-              border: `1px solid ${style.border}`,
-              background: style.gradient,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#f9fafb',
-              fontSize: 64,
-              fontWeight: 800,
-              textTransform: 'uppercase',
-              boxShadow: 'inset 0 2px 20px rgba(0, 0, 0, 0.2), 0 8px 40px rgba(0, 0, 0, 0.4)',
-              marginBottom: spacing.xl,
-              overflow: 'hidden',
-            }}
-          >
-            {item.imageUrl ? (
-              <img
-                src={item.imageUrl}
-                alt={item.name}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                }}
-              />
-            ) : (
-              style.icon
-            )}
-          </div>
+          {(() => {
+            const deckImages = item.category === 'decks' ? (item as DeckItem).imageUrls : []
+            const hasCarousel = deckImages.length > 1
+            const activeImage = hasCarousel ? deckImages[carouselIndex] : item.imageUrl
+            return (
+              <div style={{ marginBottom: spacing.xl }}>
+                <div
+                  style={{
+                    borderRadius: radii.lg,
+                    border: `1px solid ${style.border}`,
+                    background: style.gradient,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#f9fafb',
+                    fontSize: 64,
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    boxShadow: 'inset 0 2px 20px rgba(0, 0, 0, 0.2), 0 8px 40px rgba(0, 0, 0, 0.4)',
+                    overflow: 'hidden',
+                    position: 'relative',
+                  }}
+                >
+                  {activeImage ? (
+                    <img
+                      src={activeImage}
+                      alt={`${item.name} ${hasCarousel ? carouselIndex + 1 : ''}`}
+                      style={{ width: '100%', height: 'auto', display: 'block' }}
+                    />
+                  ) : (
+                    style.icon
+                  )}
+                  {hasCarousel && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setCarouselIndex((i) => (i - 1 + deckImages.length) % deckImages.length)}
+                        style={{
+                          position: 'absolute',
+                          left: 0,
+                          top: 0,
+                          bottom: 0,
+                          width: 48,
+                          background: 'linear-gradient(to right, rgba(0,0,0,0.5), transparent)',
+                          border: 'none',
+                          color: '#fff',
+                          fontSize: 28,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setCarouselIndex((i) => (i + 1) % deckImages.length)}
+                        style={{
+                          position: 'absolute',
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                          width: 48,
+                          background: 'linear-gradient(to left, rgba(0,0,0,0.5), transparent)',
+                          border: 'none',
+                          color: '#fff',
+                          fontSize: 28,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        ›
+                      </button>
+                    </>
+                  )}
+                </div>
+                {hasCarousel && (
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: spacing.sm }}>
+                    {deckImages.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setCarouselIndex(i)}
+                        style={{
+                          width: i === carouselIndex ? 20 : 8,
+                          height: 8,
+                          borderRadius: 4,
+                          background: i === carouselIndex ? '#fbbf24' : 'rgba(255,255,255,0.25)',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: 0,
+                          transition: 'all 0.2s',
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })()}
 
           {/* Price Display */}
           <div
