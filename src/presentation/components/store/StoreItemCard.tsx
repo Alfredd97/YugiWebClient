@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import type { StoreItem } from '../../../domain/entities/StoreItem'
 import type { DeckItem } from '../../../domain/entities/DeckItem'
 import { useTheme } from '../../../theme/ThemeProvider'
+import { useCurrency } from '../../../application/currency/CurrencyContext'
 import { AddToCartButton } from '../cart/AddToCartButton'
 
 interface StoreItemCardProps {
@@ -11,6 +12,7 @@ interface StoreItemCardProps {
 
 export const StoreItemCard = ({ item }: StoreItemCardProps) => {
   const { spacing, colors, radii, shadows } = useTheme()
+  const { cupPerUsd } = useCurrency()
   const navigate = useNavigate()
   const [carouselIndex, setCarouselIndex] = useState(0)
 
@@ -345,7 +347,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
               fontWeight: 500,
             }}
           >
-            ≈{item.price.cup.toFixed(1)} CUP
+            ≈{(item.price.usd * cupPerUsd).toFixed(1)} CUP
           </div>
         </div>
 

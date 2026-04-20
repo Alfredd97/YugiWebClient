@@ -44,6 +44,14 @@ export class AccessoryItemRepository {
     return this.mapToEntity(data)
   }
 
+  async countAll(): Promise<number> {
+    const { count, error } = await supabase
+      .from('accessories')
+      .select('*', { count: 'exact', head: true })
+    if (error || count === null) return 0
+    return count
+  }
+
   private mapToEntity(record: AccessoryItemRecord): AccessoryItem {
     return new AccessoryItem({
       id: record.id,

@@ -97,7 +97,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
           >
             <img
               src={logoYugi}
-              alt="Yugi Faction"
+              alt="Yu-Gi-Oh-CMG"
               style={{
                 width: 56,
                 height: 56,
@@ -122,7 +122,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
                   backgroundClip: 'text',
                 }}
               >
-                Yugi Faction
+                Yu-Gi-Oh-CMG
               </div>
               <div
                 style={{
@@ -213,7 +213,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <span style={{ fontSize: 13, color: colors.text, fontWeight: 600 }}>
-              © {new Date().getFullYear()} YuGi Faction
+              © {new Date().getFullYear()} Yu-Gi-Oh-CMG
             </span>
             <span style={{ fontSize: 12, color: colors.textMuted }}>
               Comunidad de duelistas
@@ -227,7 +227,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
 
       <CartModal
         phoneNumber={DEFAULT_PHONE_NUMBER}
-        businessName="YuGi Faction"
+        businessName="Yu-Gi-Oh-CMG"
         onCheckout={onCheckout}
       />
     </div>

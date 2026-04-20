@@ -337,7 +337,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
               }}
             >
               Únase al duelo de monstruos, comercie cartas, decks y accesorios junto a toda la
-              comunidad de <span style={{ color: colors.primary, fontWeight: 600 }}>YuGi Faction</span>.
+              comunidad de <span style={{ color: colors.primary, fontWeight: 600 }}>Yu-Gi-Oh-CMG</span>.
             </p>
           </div>
         </div>

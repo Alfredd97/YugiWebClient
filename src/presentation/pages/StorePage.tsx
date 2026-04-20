@@ -81,7 +81,7 @@ export const StorePage = () => {
 
   const subtitleByCategory: Record<StoreItemCategory, string> = {
     cards:
-      'Explora las cartas disponibles en la comunidad YuGi Faction. Basado en la tienda de referencia.',
+      'Explora las cartas disponibles en la comunidad Yu-Gi-Oh-CMG. Basado en la tienda de referencia.',
     decks:
       'Decks listos para jugar o mejorar tu estrategia. Listado de ejemplo inspirado en la tienda.',
     accessories:
@@ -144,7 +144,7 @@ export const StorePage = () => {
                   animation: 'pulse 2s ease-in-out infinite',
                 }}
               />
-              Tienda YuGi Faction
+              Tienda Yu-Gi-Oh-CMG
             </p>
 
             <h1

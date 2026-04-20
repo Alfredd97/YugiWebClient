@@ -44,6 +44,14 @@ export class CardItemRepository {
     return this.mapToEntity(data)
   }
 
+  async countAll(): Promise<number> {
+    const { count, error } = await supabase
+      .from('cards')
+      .select('*', { count: 'exact', head: true })
+    if (error || count === null) return 0
+    return count
+  }
+
   private mapToEntity(record: CardItemRecord): CardItem {
     return new CardItem({
       id: record.id,

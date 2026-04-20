@@ -9,6 +9,7 @@ import { useTheme } from '../../theme/ThemeProvider'
 import { AddToCartButton } from '../components/cart/AddToCartButton'
 import { CheckoutService } from '../../application/messaging/CheckoutService'
 import type { CartItem } from '../../domain/entities/CartItem'
+import { useCurrency } from '../../application/currency/CurrencyContext'
 
 const catalog = new StoreCatalogService()
 const DEFAULT_PHONE_NUMBER = import.meta.env.VITE_WHATSAPP_PHONE as string
@@ -21,6 +22,7 @@ export const StoreItemDetailsPage = () => {
   const params = useParams()
   const navigate = useNavigate()
   const { spacing, colors, radii } = useTheme()
+  const { cupPerUsd } = useCurrency()
 
   const [item, setItem] = useState<StoreItem | null>(null)
   const [loading, setLoading] = useState(true)
@@ -80,7 +82,7 @@ export const StoreItemDetailsPage = () => {
 
   const checkoutService = new CheckoutService({
     phoneNumber: DEFAULT_PHONE_NUMBER,
-    businessName: 'YuGi Faction',
+    businessName: 'Yu-Gi-Oh-CMG',
   })
 
   const handleDirectCheckout = () => {
@@ -93,7 +95,7 @@ export const StoreItemDetailsPage = () => {
       maxAvailable: item.quantity,
       addedAt: Date.now(),
     }
-    checkoutService.checkoutViaWhatsApp([cartItem], item.price.usd, item.price.cup)
+    checkoutService.checkoutViaWhatsApp([cartItem], item.price.usd, item.price.usd * cupPerUsd)
   }
 
   return (
@@ -198,7 +200,7 @@ export const StoreItemDetailsPage = () => {
               lineHeight: 1.7,
             }}
           >
-            Explora los detalles de este producto disponible en la comunidad YuGi Faction.
+            Explora los detalles de este producto disponible en la comunidad Yu-Gi-Oh-CMG.
             Coordina directamente con el vendedor para completar tu compra.
           </p>
 
@@ -445,7 +447,7 @@ export const StoreItemDetailsPage = () => {
                 fontWeight: 500,
               }}
             >
-              ≈{item.price.cup.toFixed(1)} CUP
+              ≈{(item.price.usd * cupPerUsd).toFixed(1)} CUP
             </div>
           </div>
 

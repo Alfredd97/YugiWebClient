@@ -31,6 +31,15 @@ export class StoreCatalogService {
     return [...cards, ...decks, ...accessories]
   }
 
+  async getCounts(): Promise<{ cards: number; decks: number; accessories: number }> {
+    const [cards, decks, accessories] = await Promise.all([
+      this.cardRepository.countAll(),
+      this.deckRepository.countAll(),
+      this.accessoryRepository.countAll(),
+    ])
+    return { cards, decks, accessories }
+  }
+
   async getItemById(category: StoreItemCategory, id: string): Promise<StoreItem | null> {
     switch (category) {
       case 'cards':

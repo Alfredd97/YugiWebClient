@@ -22,7 +22,7 @@ export class HomePageContentService {
   getContent(): HomePageContent {
     return {
       hero: new HeroContent({
-        title: 'Bienvenido a YuGi Faction',
+        title: 'Bienvenido a Yu-Gi-Oh-CMG',
         subtitle:
           'Bienvenidos duelistas. Acceda a las mejores cartas, decks y accesorios. Nos encargamos de ayudarlo a encontrar lo que desea. ¡Comercie ahora!',
         primaryCtaLabel: 'Iniciar sesión',

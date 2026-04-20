@@ -12,7 +12,7 @@ const DEFAULT_PHONE_NUMBER = import.meta.env.VITE_WHATSAPP_PHONE as string
 
 export const CartModal = ({
   phoneNumber,
-  businessName = 'YuGi Faction',
+  businessName = 'Yu-Gi-Oh-CMG',
   onCheckout
 }: CartModalProps) => {
   const { items, isOpen, closeCart, removeItem, updateQuantity, totalUSD, totalCUP, isCartExpired, checkout } = useCart()

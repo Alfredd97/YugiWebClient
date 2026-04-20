@@ -5,13 +5,16 @@ import './index.css'
 import App from './App.tsx'
 import { ThemeProvider } from './theme/ThemeProvider'
 import { CartProvider } from './application/cart/CartContext'
+import { CurrencyProvider } from './application/currency/CurrencyContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
         <CartProvider>
-          <App />
+          <CurrencyProvider>
+            <App />
+          </CurrencyProvider>
         </CartProvider>
       </ThemeProvider>
     </BrowserRouter>

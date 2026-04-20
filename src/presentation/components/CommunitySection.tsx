@@ -45,7 +45,7 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
             lineHeight: 1.6,
           }}
         >
-          Personal que ha desarrollado o contribuido al proyecto YuGi Faction. Les agradecemos por
+          Personal que ha desarrollado o contribuido al proyecto Yu-Gi-Oh-CMG. Les agradecemos por
           todo su esfuerzo.
         </p>
 
@@ -154,7 +154,7 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
             lineHeight: 1.6,
           }}
         >
-          Usuarios que han donado voluntariamente al proyecto YuGi Faction. Gracias por su apoyo y
+          Usuarios que han donado voluntariamente al proyecto Yu-Gi-Oh-CMG. Gracias por su apoyo y
           por ayudarnos a seguir creciendo.
         </p>
 

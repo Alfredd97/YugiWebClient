@@ -45,6 +45,14 @@ export class DeckItemRepository {
     return this.mapToEntity(data)
   }
 
+  async countAll(): Promise<number> {
+    const { count, error } = await supabase
+      .from('decks')
+      .select('*', { count: 'exact', head: true })
+    if (error || count === null) return 0
+    return count
+  }
+
   private mapToEntity(record: DeckItemRecord): DeckItem {
     return new DeckItem({
       id: record.id,
