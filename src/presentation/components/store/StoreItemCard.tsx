@@ -207,12 +207,13 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
           flex: 1,
           minWidth: 0,
-          gap: 4,
+          overflow: 'hidden',
         }}
       >
+        {/* Top — name + format */}
         <div
           style={{
             display: 'flex',
@@ -250,34 +251,14 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
           </span>
         </div>
 
+        {/* Middle — expansion + quantity */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: spacing.sm,
-            fontSize: 11,
-            color: colors.textMuted,
             flexWrap: 'nowrap',
             overflow: 'hidden',
-          }}
-        >
-          <span style={{ whiteSpace: 'nowrap' }}>
-            <span style={{ color: colors.text, fontWeight: 500 }}>{item.condition}</span>
-          </span>
-          <span style={{ color: colors.borderSubtle, flexShrink: 0 }}>·</span>
-          <span style={{ whiteSpace: 'nowrap' }}>
-            <span style={{ color: colors.text, fontWeight: 500 }}>{item.rarity}</span>
-          </span>
-        </div>
-
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: spacing.sm,
-            fontSize: 10,
-            color: colors.textSubtle,
-            flexWrap: 'nowrap',
           }}
         >
           <span
@@ -303,12 +284,42 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
                 borderRadius: '50%',
                 background: item.quantity > 0 ? colors.accentGreen : colors.accentRed,
                 boxShadow: `0 0 4px ${item.quantity > 0 ? colors.accentGreen : colors.accentRed}`,
+                flexShrink: 0,
               }}
             />
-            <span style={{ color: item.quantity > 0 ? colors.accentGreen : colors.accentRed, fontWeight: 600 }}>
+            <span style={{ fontSize: 10, color: item.quantity > 0 ? colors.accentGreen : colors.accentRed, fontWeight: 600 }}>
               {item.quantity > 0 ? `${item.quantity} disp.` : 'Agotado'}
             </span>
           </span>
+        </div>
+
+        {/* Bottom — condition + rarity */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: spacing.sm,
+            flexWrap: 'nowrap',
+            overflow: 'hidden',
+          }}
+        >
+          {[item.condition, item.rarity].map((val) => (
+            <span
+              key={val}
+              style={{
+                padding: '2px 6px',
+                borderRadius: radii.sm,
+                background: 'rgba(30, 41, 59, 0.5)',
+                border: `1px solid ${colors.borderSubtle}`,
+                fontSize: 9,
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                flexShrink: 0,
+              }}
+            >
+              {val}
+            </span>
+          ))}
         </div>
       </div>
 

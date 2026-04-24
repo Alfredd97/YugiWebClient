@@ -195,11 +195,6 @@ export class HomePageContentService {
         }),
       ],
       donors: [
-        new Donor({ id: 'maik', displayName: 'Maik' }),
-        new Donor({ id: 'livany', displayName: 'Livany' }),
-        new Donor({ id: 'marcos', displayName: 'Marcos' }),
-        new Donor({ id: 'bankaiproject', displayName: 'BankaiProject' }),
-        new Donor({ id: 'yukigw', displayName: 'YukiGW' }),
       ],
     }
   }

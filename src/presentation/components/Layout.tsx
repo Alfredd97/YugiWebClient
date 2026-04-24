@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
-import logoYugi from '../../assets/LogoYugi.jpg'
+import logoYugi from '../../assets/LogoYugi.png'
 import { useTheme } from '../../theme/ThemeProvider'
 import { CartButton } from './cart/CartButton'
 import { CartModal } from './cart/CartModal'
@@ -103,7 +103,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
                 height: 56,
                 borderRadius: '50%',
                 border: `2px solid ${colors.primary}`,
-                boxShadow: '0 0 30px rgba(251, 191, 36, 0.5)',
+                boxShadow: '0 0 30px rgba(252, 245, 226, 0.5)',
                 objectFit: 'cover',
                 flexShrink: 0,
               }}
