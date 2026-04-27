@@ -215,9 +215,6 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
             <span style={{ fontSize: 13, color: colors.text, fontWeight: 600 }}>
               © {new Date().getFullYear()} Yu-Gi-Oh-CMG
             </span>
-            <span style={{ fontSize: 12, color: colors.textMuted }}>
-              Comunidad de duelistas
-            </span>
           </div>
           <div style={{ fontSize: 12, color: colors.textSubtle }}>
             Proyecto no oficial inspirado en Yu-Gi-Oh!

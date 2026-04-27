@@ -193,60 +193,6 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                 gap: spacing.md,
               }}
             >
-              <div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: colors.textMuted,
-                    marginBottom: 4,
-                  }}
-                >
-                  Los dioses egipcios
-                </div>
-                <div
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 700,
-                    background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
-                  Cartas · Decks · Accesorios
-                </div>
-              </div>
-
-              <div
-                style={{
-                  fontSize: 11,
-                  fontWeight: 600,
-                  padding: '6px 12px',
-                  borderRadius: radii.pill,
-                  border: `1px solid ${colors.borderSubtle}`,
-                  backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                  backdropFilter: 'blur(8px)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  letterSpacing: '0.05em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                <span
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #fb923c, #fbbf24, #a855f7, #38bdf8)',
-                    boxShadow: '0 0 12px rgba(251, 191, 36, 0.8)',
-                  }}
-                />
-                Activo
-              </div>
             </div>
 
             <div

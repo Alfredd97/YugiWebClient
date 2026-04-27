@@ -30,9 +30,9 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => {
             backgroundClip: 'text',
           }}
         >
-          Características
+          Características:
         </h2>
-        <p
+        {/* <p
           style={{
             fontSize: 16,
             color: colors.textMuted,
@@ -43,7 +43,7 @@ export const FeaturesSection = ({ features }: FeaturesSectionProps) => {
         >
           Tenemos el objetivo de agrupar a toda la comunidad de YU-GI-OH y hacer de esta una gran
           nación.
-        </p>
+        </p> */}
 
         <ul
           style={{

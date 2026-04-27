@@ -34,7 +34,7 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
             backgroundClip: 'text',
           }}
         >
-          Desarrolladores
+          Desarrolladores:
         </h2>
         <p
           style={{
@@ -45,8 +45,7 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
             lineHeight: 1.6,
           }}
         >
-          Personal que ha desarrollado o contribuido al proyecto Yu-Gi-Oh-CMG. Les agradecemos por
-          todo su esfuerzo.
+          Personal que ha desarrollado o contribuido al proyecto Yu-Gi-Oh-CMG.
         </p>
 
         <div
@@ -143,7 +142,7 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
             backgroundClip: 'text',
           }}
         >
-          Donaciones
+          Donaciones:
         </h2>
         <p
           style={{
@@ -154,8 +153,7 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
             lineHeight: 1.6,
           }}
         >
-          Usuarios que han donado voluntariamente al proyecto Yu-Gi-Oh-CMG. Gracias por su apoyo y
-          por ayudarnos a seguir creciendo.
+          Usuarios que han donado voluntariamente al proyecto Yu-Gi-Oh-CMG. Les agradecemos por todo su esfuerzo.
         </p>
 
         <div

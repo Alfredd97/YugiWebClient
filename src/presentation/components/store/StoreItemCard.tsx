@@ -213,99 +213,56 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
           overflow: 'hidden',
         }}
       >
-        {/* Top — name + format */}
-        <div
+        {/* Top — name */}
+        <h3
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            flexWrap: 'wrap',
+            margin: 0,
+            fontSize: 13,
+            fontWeight: 700,
+            color: colors.text,
+            lineHeight: 1.3,
           }}
         >
-          <h3
-            style={{
-              margin: 0,
-              fontSize: 15,
-              fontWeight: 700,
-              color: colors.text,
-              lineHeight: 1.3,
-            }}
-          >
-            {item.name}
-          </h3>
-          <span
-            style={{
-              fontSize: 9,
-              fontWeight: 700,
-              padding: '2px 6px',
-              borderRadius: radii.pill,
-              border: `1px solid ${colors.borderSubtle}`,
-              background: 'rgba(15, 23, 42, 0.6)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              color: colors.textMuted,
-              flexShrink: 0,
-            }}
-          >
-            {item.gameFormat}
-          </span>
-        </div>
+          {item.name}
+        </h3>
 
-        {/* Middle — expansion + quantity */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: spacing.sm,
-            flexWrap: 'nowrap',
-            overflow: 'hidden',
-          }}
-        >
-          <span
+        {/* Bottom — attributes */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <div
             style={{
-              padding: '2px 6px',
-              borderRadius: radii.sm,
-              background: 'rgba(30, 41, 59, 0.5)',
-              border: `1px solid ${colors.borderSubtle}`,
-              fontSize: 9,
-              fontWeight: 600,
-              letterSpacing: '0.05em',
-              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              gap: spacing.xs,
+              flexWrap: 'wrap',
             }}
           >
-            {item.expansionCode}
-          </span>
-          <span style={{ color: colors.borderSubtle, flexShrink: 0 }}>·</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 4, whiteSpace: 'nowrap' }}>
+            {[item.gameFormat, item.condition].map((val) => (
+              <span
+                key={val}
+                style={{
+                  padding: '2px 6px',
+                  borderRadius: radii.sm,
+                  background: 'rgba(30, 41, 59, 0.5)',
+                  border: `1px solid ${colors.borderSubtle}`,
+                  fontSize: 9,
+                  fontWeight: 600,
+                  letterSpacing: '0.05em',
+                  flexShrink: 0,
+                }}
+              >
+                {val}
+              </span>
+            ))}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: spacing.sm,
+              flexWrap: 'wrap',
+            }}
+          >
             <span
-              style={{
-                width: 5,
-                height: 5,
-                borderRadius: '50%',
-                background: item.quantity > 0 ? colors.accentGreen : colors.accentRed,
-                boxShadow: `0 0 4px ${item.quantity > 0 ? colors.accentGreen : colors.accentRed}`,
-                flexShrink: 0,
-              }}
-            />
-            <span style={{ fontSize: 10, color: item.quantity > 0 ? colors.accentGreen : colors.accentRed, fontWeight: 600 }}>
-              {item.quantity > 0 ? `${item.quantity} disp.` : 'Agotado'}
-            </span>
-          </span>
-        </div>
-
-        {/* Bottom — condition + rarity */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: spacing.sm,
-            flexWrap: 'nowrap',
-            overflow: 'hidden',
-          }}
-        >
-          {[item.condition, item.rarity].map((val) => (
-            <span
-              key={val}
               style={{
                 padding: '2px 6px',
                 borderRadius: radii.sm,
@@ -314,12 +271,11 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
                 fontSize: 9,
                 fontWeight: 600,
                 letterSpacing: '0.05em',
-                flexShrink: 0,
               }}
             >
-              {val}
+              {item.rarity}
             </span>
-          ))}
+          </div>
         </div>
       </div>
 
@@ -362,6 +318,21 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
           </div>
         </div>
 
+        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 4, margin: 'auto 0' }}>
+          <span
+            style={{
+              width: 5,
+              height: 5,
+              borderRadius: '50%',
+              background: item.quantity > 0 ? colors.accentGreen : colors.accentRed,
+              boxShadow: `0 0 4px ${item.quantity > 0 ? colors.accentGreen : colors.accentRed}`,
+              flexShrink: 0,
+            }}
+          />
+          <span style={{ fontSize: 10, color: item.quantity > 0 ? colors.accentGreen : colors.accentRed, fontWeight: 600 }}>
+            {item.quantity > 0 ? `${item.quantity} ud.` : 'Agotado'}
+          </span>
+        </span>
         <AddToCartButton
           itemId={item.id}
           name={item.name}

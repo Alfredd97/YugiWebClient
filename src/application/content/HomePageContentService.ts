@@ -24,17 +24,17 @@ export class HomePageContentService {
       hero: new HeroContent({
         title: 'Bienvenido a Yu-Gi-Oh-CMG',
         subtitle:
-          'Bienvenidos duelistas. Acceda a las mejores cartas, decks y accesorios. Nos encargamos de ayudarlo a encontrar lo que desea. ¡Comercie ahora!',
+          'Bienvenidos duelistas. Acceda a las mejores cartas, decks y accesorios. Nos encargamos de ayudarlo a encontrar lo que desea.',
         primaryCtaLabel: 'Iniciar sesión',
         secondaryCtaLabel: 'Acceder a la tienda',
       }),
       features: [
-        new Feature({
-          id: 'unify-community',
-          title: 'Unificar a la comunidad',
-          description:
-            'Tenemos el objetivo de agrupar a toda la comunidad de YU-GI-OH y hacer de esta una gran nación.',
-        }),
+        // new Feature({
+        //   id: 'unify-community',
+        //   title: 'Unificar a la comunidad',
+        //   description:
+        //     'Tenemos el objetivo de agrupar a toda la comunidad de YU-GI-OH y hacer de esta una gran nación.',
+        // }),
         new Feature({
           id: 'card-trade',
           title: 'Comercio de cartas',
@@ -184,7 +184,7 @@ export class HomePageContentService {
         new DeveloperProfile({
           id: 'jose-raul',
           name: 'Jose Raul',
-          role: 'Jefe de proyecto y desarrollador',
+          role: 'Jefe de Proyecto',
           order: 1,
         }),
         new DeveloperProfile({

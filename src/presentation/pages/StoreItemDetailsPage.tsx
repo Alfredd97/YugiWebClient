@@ -201,7 +201,6 @@ export const StoreItemDetailsPage = () => {
             }}
           >
             Explora los detalles de este producto disponible en la comunidad Yu-Gi-Oh-CMG.
-            Coordina directamente con el vendedor para completar tu compra.
           </p>
 
           {/* Info Grid */}

@@ -81,11 +81,11 @@ export const StorePage = () => {
 
   const subtitleByCategory: Record<StoreItemCategory, string> = {
     cards:
-      'Explora las cartas disponibles en la comunidad Yu-Gi-Oh-CMG. Basado en la tienda de referencia.',
+      'Explora las cartas disponibles en la comunidad Yu-Gi-Oh-CMG.',
     decks:
-      'Decks listos para jugar o mejorar tu estrategia. Listado de ejemplo inspirado en la tienda.',
+      'Decks listos para jugar o mejorar tu estrategia.',
     accessories:
-      'Accesorios para tus duelos: playmats, fundas y más. Catálogo demostrativo.',
+      'Accesorios para tus duelos: playmats, fundas y más.',
   }
 
   return (
