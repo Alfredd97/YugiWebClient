@@ -12,6 +12,7 @@ export const CommunitySection = ({ developers, donors }: CommunitySectionProps) 
 
   return (
     <section
+      className="community-section"
       style={{
         marginBottom: spacing.sectionPaddingY,
         display: 'grid',

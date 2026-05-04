@@ -201,8 +201,32 @@ img {
     grid-template-columns: 1fr !important;
   }
 
+  .commerce-grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-channel {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    text-align: center !important;
+  }
+
+  .contact-channel button {
+    width: 100% !important;
+  }
+
   .statistics-grid {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Shrink hero category tile font on narrow viewports so "Accesorios" fits */
+@media (max-width: 480px) {
+  .hero-category-tile {
+    font-size: 10px !important;
+    letter-spacing: 0.02em !important;
+    height: 56px !important;
   }
 }
 

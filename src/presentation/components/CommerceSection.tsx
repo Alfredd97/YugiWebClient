@@ -20,6 +20,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
       }}
     >
       <div
+        className="commerce-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',

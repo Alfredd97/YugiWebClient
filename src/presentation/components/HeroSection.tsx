@@ -239,6 +239,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                     }}
                   >
                     <div
+                      className="hero-category-tile"
                       style={{
                         height: 70,
                         borderRadius: radii.md,
@@ -251,6 +252,8 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                         letterSpacing: '0.05em',
                         textTransform: 'uppercase',
                         fontSize: 14,
+                        padding: '0 4px',
+                        textAlign: 'center',
                         boxShadow: 'inset 0 2px 10px rgba(0, 0, 0, 0.3)',
                       }}
                     >

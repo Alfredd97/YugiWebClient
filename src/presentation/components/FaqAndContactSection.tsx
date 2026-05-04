@@ -14,11 +14,13 @@ export const FaqAndContactSection = ({
 
   return (
     <section
+      className="faq-contact-section"
       style={{
         marginBottom: spacing.sectionPaddingY,
       }}
     >
       <div
+        className="contact-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
@@ -37,6 +39,7 @@ export const FaqAndContactSection = ({
           return (
             <article
               key={channel.id}
+              className="contact-channel"
               style={{
                 borderRadius: radii.xl,
                 border: `1px solid ${colors.borderStrong}`,
@@ -48,6 +51,7 @@ export const FaqAndContactSection = ({
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: spacing.lg,
+                flexWrap: 'wrap',
                 transition: 'all var(--transition-base)',
                 animation: `fadeInUp 0.4s ease-out ${index * 0.1}s both`,
               }}
