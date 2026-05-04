@@ -41,8 +41,10 @@ export const AddToCartButton = ({
     },
   }
 
+  const fullWidth = size === 'md'
+
   return (
-    <div style={{ position: 'relative', width: '100%' }}>
+    <div style={{ position: 'relative', width: fullWidth ? '100%' : 'auto' }}>
       <button
         type="button"
         onClick={(e) => {
@@ -51,7 +53,7 @@ export const AddToCartButton = ({
         }}
         disabled={isDisabled}
         style={{
-          width: '100%',
+          width: fullWidth ? '100%' : 'auto',
           borderRadius: radii.pill,
           border: 'none',
           padding: buttonStyles[size].padding,
