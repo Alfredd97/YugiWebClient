@@ -12,10 +12,10 @@ export class StoreItem {
   readonly name: string
   readonly category: StoreItemCategory
   readonly quantity: number
-  readonly gameFormat: StoreGameFormat
+  readonly gameFormat?: StoreGameFormat
   readonly condition: string
-  readonly expansionCode: string
-  readonly rarity: string
+  readonly expansionCode?: string
+  readonly rarity?: string
   readonly price: StorePrice
   readonly imageUrl?: string | null
   readonly createdAt: Date = new Date()
@@ -25,10 +25,10 @@ export class StoreItem {
     name: string
     category: StoreItemCategory
     quantity: number
-    gameFormat: StoreGameFormat
+    gameFormat?: StoreGameFormat
     condition: string
-    expansionCode: string
-    rarity: string
+    expansionCode?: string
+    rarity?: string
     priceUsd: number
     priceCup: number
     imageUrl?: string | null

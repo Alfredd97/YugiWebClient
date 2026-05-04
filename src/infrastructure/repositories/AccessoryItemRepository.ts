@@ -1,14 +1,10 @@
 import { supabase } from '../supabase/SupabaseClient'
 import { AccessoryItem } from '../../domain/entities/AccessoryItem'
-import { type StoreGameFormat } from '../../domain/entities/StoreItem'
 
 interface AccessoryItemRecord {
   id: string
   name: string
-  game_format: StoreGameFormat
   condition: string
-  expansion_code: string
-  rarity: string
   quantity: number
   price_usd: number
   price_cup: number
@@ -57,10 +53,7 @@ export class AccessoryItemRepository {
       id: record.id,
       name: record.name,
       quantity: record.quantity,
-      gameFormat: record.game_format,
       condition: record.condition,
-      expansionCode: record.expansion_code,
-      rarity: record.rarity,
       priceUsd: record.price_usd,
       priceCup: record.price_cup,
       imageUrl: record.image_url,

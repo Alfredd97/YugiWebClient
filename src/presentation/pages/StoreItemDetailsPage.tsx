@@ -220,18 +220,20 @@ export const StoreItemDetailsPage = () => {
             >
               {/* Left column */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.md }}>
-                <InfoRow
-                  icon={
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 16v-4M12 8h.01" />
-                    </svg>
-                  }
-                  label="Formato"
-                  value={item.gameFormat}
-                  colors={colors}
-                  radii={radii}
-                />
+                {item.category !== 'accessories' && (
+                  <InfoRow
+                    icon={
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4M12 8h.01" />
+                      </svg>
+                    }
+                    label="Formato"
+                    value={item.gameFormat!}
+                    colors={colors}
+                    radii={radii}
+                  />
+                )}
                 <InfoRow
                   icon={
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -247,29 +249,33 @@ export const StoreItemDetailsPage = () => {
 
               {/* Right column */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.md }}>
-                <InfoRow
-                  icon={
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                      <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-                    </svg>
-                  }
-                  label="Expansión"
-                  value={item.expansionCode}
-                  colors={colors}
-                  radii={radii}
-                />
-                <InfoRow
-                  icon={
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                  }
-                  label="Rareza"
-                  value={item.rarity}
-                  colors={colors}
-                  radii={radii}
-                />
+                {item.category !== 'accessories' && (
+                  <>
+                    <InfoRow
+                      icon={
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                          <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                        </svg>
+                      }
+                      label="Expansión"
+                      value={item.expansionCode!}
+                      colors={colors}
+                      radii={radii}
+                    />
+                    <InfoRow
+                      icon={
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                      }
+                      label="Rareza"
+                      value={item.rarity!}
+                      colors={colors}
+                      radii={radii}
+                    />
+                  </>
+                )}
                 <InfoRow
                   icon={
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

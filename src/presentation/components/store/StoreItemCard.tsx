@@ -236,7 +236,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
               flexWrap: 'wrap',
             }}
           >
-            {[item.gameFormat, item.condition].map((val) => (
+            {(item.category === 'accessories' ? [item.condition] : [item.gameFormat!, item.condition]).map((val) => (
               <span
                 key={val}
                 style={{
@@ -254,28 +254,30 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
               </span>
             ))}
           </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: spacing.sm,
-              flexWrap: 'wrap',
-            }}
-          >
-            <span
+          {item.category !== 'accessories' && (
+            <div
               style={{
-                padding: '2px 6px',
-                borderRadius: radii.sm,
-                background: 'rgba(30, 41, 59, 0.5)',
-                border: `1px solid ${colors.borderSubtle}`,
-                fontSize: 9,
-                fontWeight: 600,
-                letterSpacing: '0.05em',
+                display: 'flex',
+                alignItems: 'center',
+                gap: spacing.sm,
+                flexWrap: 'wrap',
               }}
             >
-              {item.rarity}
-            </span>
-          </div>
+              <span
+                style={{
+                  padding: '2px 6px',
+                  borderRadius: radii.sm,
+                  background: 'rgba(30, 41, 59, 0.5)',
+                  border: `1px solid ${colors.borderSubtle}`,
+                  fontSize: 9,
+                  fontWeight: 600,
+                  letterSpacing: '0.05em',
+                }}
+              >
+                {item.rarity!}
+              </span>
+            </div>
+          )}
         </div>
       </div>
 

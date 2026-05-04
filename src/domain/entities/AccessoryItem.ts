@@ -1,13 +1,10 @@
-import { StoreItem, type StoreGameFormat } from './StoreItem'
+import { StoreItem } from './StoreItem'
 
 export interface AccessoryItemParams {
   id: string
   name: string
   quantity: number
-  gameFormat: StoreGameFormat
   condition: string
-  expansionCode: string
-  rarity: string
   priceUsd: number
   priceCup: number
   imageUrl?: string | null
