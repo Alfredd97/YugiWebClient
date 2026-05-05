@@ -23,7 +23,7 @@ export const FaqAndContactSection = ({
         className="contact-grid"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
           gap: spacing.md,
         }}
       >
@@ -48,10 +48,11 @@ export const FaqAndContactSection = ({
                 padding: spacing.lg,
                 boxShadow: shadows.medium,
                 display: 'flex',
-                alignItems: 'center',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
                 justifyContent: 'space-between',
-                gap: spacing.lg,
-                flexWrap: 'wrap',
+                gap: spacing.md,
+                minHeight: 160,
                 transition: 'all var(--transition-base)',
                 animation: `fadeInUp 0.4s ease-out ${index * 0.1}s both`,
               }}

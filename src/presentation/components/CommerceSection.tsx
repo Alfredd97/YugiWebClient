@@ -62,7 +62,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                 display: 'grid',
                 gridTemplateColumns: 'minmax(0, 1.8fr) minmax(0, 1.2fr)',
                 gap: spacing.lg,
-                alignItems: 'center',
+                alignItems: 'stretch',
                 transition: 'all var(--transition-base)',
                 animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`,
                 cursor: 'pointer',
@@ -79,7 +79,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                 e.currentTarget.style.boxShadow = shadows.medium
               }}
             >
-              <div>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <p
                   style={{
                     fontSize: 11,
@@ -137,7 +137,8 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                   type="button"
                   onClick={() => navigate(`/store/${category.type}`)}
                   style={{
-                    marginTop: spacing.sm,
+                    marginTop: 'auto',
+                    alignSelf: 'flex-start',
                     borderRadius: radii.pill,
                     border: `1px solid ${colors.borderStrong}`,
                     padding: '10px 20px',
