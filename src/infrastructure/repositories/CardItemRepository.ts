@@ -1,5 +1,5 @@
 import { supabase } from '../supabase/SupabaseClient'
-import { CardItem } from '../../domain/entities/CardItem'
+import { CardItem, type CardType } from '../../domain/entities/CardItem'
 import { type StoreGameFormat } from '../../domain/entities/StoreItem'
 
 interface CardItemRecord {
@@ -13,6 +13,7 @@ interface CardItemRecord {
   price_usd: number
   price_cup: number
   image_url?: string | null
+  tipo?: CardType | null
 }
 
 export class CardItemRepository {
@@ -64,6 +65,7 @@ export class CardItemRepository {
       priceUsd: record.price_usd,
       priceCup: record.price_cup,
       imageUrl: record.image_url,
+      cardType: record.tipo,
     })
   }
 }

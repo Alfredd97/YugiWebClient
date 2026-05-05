@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import type { StoreItemCategory } from '../../domain/entities/StoreItem'
 import type { StoreItem } from '../../domain/entities/StoreItem'
+import { type CardType, CARD_TYPE_GROUPS } from '../../domain/entities/CardItem'
+import type { CardItem } from '../../domain/entities/CardItem'
 import { StoreCatalogService } from '../../application/store/StoreCatalogService'
 import { Layout } from '../components/Layout'
 import { StoreCategoryTabs } from '../components/store/StoreCategoryTabs'
@@ -23,27 +25,30 @@ export const StorePage = () => {
 
   const [items, setItems] = useState<StoreItem[]>([])
   const [loading, setLoading] = useState(true)
-  const [searchQuery, setSearchQuery] = useState('')        // ← ADDED
-  const [sortOrder, setSortOrder] = useState<SortOrder>('none') 
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortOrder, setSortOrder] = useState<SortOrder>('none')
+  const [cardTypeFilter, setCardTypeFilter] = useState<CardType | 'all'>('all')
 
   const activeCategory: StoreItemCategory = isValidCategory(rawCategory) ? rawCategory : 'cards'
 
   useEffect(() => {
     setLoading(true)
-    setSearchQuery('')     // ← ADDED: reset filters on category change
-    setSortOrder('none')   // ← ADDED
+    setSearchQuery('')
+    setSortOrder('none')
+    setCardTypeFilter('all')
     catalog.getItemsByCategory(activeCategory).then(setItems).finally(() => setLoading(false))
   }, [activeCategory])
 
   const displayedItems = useMemo(() => {
     let result = [...items]
 
-    // Filter by search query (matches name or any string field)
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase()
-      result = result.filter((item) =>
-        item.name.toLowerCase().includes(q)
-      )
+      result = result.filter((item) => item.name.toLowerCase().includes(q))
+    }
+
+    if (activeCategory === 'cards' && cardTypeFilter !== 'all') {
+      result = result.filter((item) => (item as CardItem).cardType === cardTypeFilter)
     }
 
     // Sort
@@ -67,7 +72,7 @@ export const StorePage = () => {
     }
 
     return result
-  }, [items, searchQuery, sortOrder])
+  }, [items, searchQuery, sortOrder, cardTypeFilter, activeCategory])
 
   if (!isValidCategory(rawCategory)) {
     return <Navigate to="/store/cards" replace />
@@ -313,6 +318,67 @@ export const StorePage = () => {
                 <option value="name">Nombre (A-Z)</option>
               </select>
             </label>
+
+            {activeCategory === 'cards' && (
+              <label
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 8,
+                  color: colors.textMuted,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  minWidth: 180,
+                }}
+              >
+                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M4 6h16M4 12h8M4 18h4" />
+                  </svg>
+                  Tipo
+                </span>
+                <select
+                  style={{
+                    borderRadius: radii.md,
+                    border: `1px solid ${colors.borderSubtle}`,
+                    backgroundColor: 'rgba(2, 6, 23, 0.6)',
+                    padding: '12px 16px',
+                    color: colors.text,
+                    fontSize: 14,
+                    fontWeight: 500,
+                    outline: 'none',
+                    cursor: 'pointer',
+                    transition: 'all var(--transition-fast)',
+                    appearance: 'none',
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='${encodeURIComponent(colors.textMuted)}' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 12px center',
+                    paddingRight: 40,
+                  }}
+                  value={cardTypeFilter}
+                  onChange={(e) => setCardTypeFilter(e.target.value as CardType | 'all')}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = colors.primary
+                    e.currentTarget.style.backgroundColor = 'rgba(15, 23, 42, 0.8)'
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = colors.borderSubtle
+                    e.currentTarget.style.backgroundColor = 'rgba(2, 6, 23, 0.6)'
+                  }}
+                >
+                  <option value="all">Todos los tipos</option>
+                  {CARD_TYPE_GROUPS.map((group) => (
+                    <optgroup key={group.label} label={group.label}>
+                      {group.types.map((type) => (
+                        <option key={type} value={type}>{type}</option>
+                      ))}
+                    </optgroup>
+                  ))}
+                </select>
+              </label>
+            )}
           </div>
 
           <div
