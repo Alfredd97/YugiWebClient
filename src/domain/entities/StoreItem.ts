@@ -1,4 +1,4 @@
-export type StoreItemCategory = 'cards' | 'decks' | 'accessories'
+export type StoreItemCategory = 'cards' | 'decks' | 'accessories' | 'especiales'
 
 export type StoreGameFormat = 'TCG' | 'OCG'
 

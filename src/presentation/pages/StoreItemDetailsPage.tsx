@@ -76,6 +76,12 @@ export const StoreItemDetailsPage = () => {
       border: 'rgba(251, 191, 36, 0.4)',
       icon: '🏆',
     },
+    especiales: {
+      gradient: 'linear-gradient(145deg, #7c3aed, #ec4899)',
+      glow: 'rgba(124, 58, 237, 0.2)',
+      border: 'rgba(124, 58, 237, 0.4)',
+      icon: '✨',
+    },
   }
 
   const style = categoryStyles[item.category]

@@ -78,6 +78,13 @@ export class HomePageContentService {
           description: 'Accesorios de todo tipo a tu disposición. ¡Accede ahora!',
           totalAvailable: 23,
         }),
+        new ProductCategory({
+          id: 'especiales',
+          type: 'especiales',
+          title: 'Especiales',
+          description: 'Cartas y artículos especiales de la comunidad. ¡Accede ahora!',
+          totalAvailable: 0,
+        }),
       ],
       commerceBenefits: [
         new CommerceBenefit({

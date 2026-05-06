@@ -23,7 +23,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
         className="commerce-grid"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           gap: spacing.md,
         }}
       >
@@ -43,6 +43,11 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
               gradient: 'linear-gradient(145deg, #fbbf24, #f59e0b)',
               glow: '0 0 40px rgba(251, 191, 36, 0.4)',
               border: 'rgba(251, 191, 36, 0.3)',
+            },
+            especiales: {
+              gradient: 'linear-gradient(145deg, #7c3aed, #ec4899)',
+              glow: '0 0 40px rgba(124, 58, 237, 0.4)',
+              border: 'rgba(124, 58, 237, 0.3)',
             },
           }
 
@@ -90,7 +95,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                     marginBottom: 8,
                   }}
                 >
-                  {category.type === 'cards' ? 'Cartas' : category.type === 'decks' ? 'Decks' : 'Accesorios'}
+                  {category.type === 'cards' ? 'Cartas' : category.type === 'decks' ? 'Decks' : category.type === 'accessories' ? 'Accesorios' : 'Especiales'}
                 </p>
                 <h3
                   style={{
@@ -160,7 +165,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                     e.currentTarget.style.color = colors.text
                   }}
                 >
-                  Ir a {category.type === 'cards' ? 'cartas' : category.type === 'decks' ? 'decks' : 'accesorios'}
+                  Ir a {category.type === 'cards' ? 'cartas' : category.type === 'decks' ? 'decks' : category.type === 'accessories' ? 'accesorios' : 'especiales'}
                 </button>
               </div>
 
@@ -181,7 +186,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                   color: '#f8fafc',
                 }}
               >
-                {category.type === 'cards' ? 'Cartas' : category.type === 'decks' ? 'Decks' : 'Accesorios'}
+                {category.type === 'cards' ? 'Cartas' : category.type === 'decks' ? 'Decks' : category.type === 'accessories' ? 'Accesorios' : 'Especiales'}
               </div>
             </article>
           )

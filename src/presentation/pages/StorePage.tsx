@@ -13,7 +13,7 @@ import { useTheme } from '../../theme/ThemeProvider'
 const catalog = new StoreCatalogService()
 
 const isValidCategory = (value: string | undefined): value is StoreItemCategory => {
-  return value === 'cards' || value === 'decks' || value === 'accessories'
+  return value === 'cards' || value === 'decks' || value === 'accessories' || value === 'especiales'
 }
 
 type SortOrder = 'none' | 'recent' | 'price-asc' | 'price-desc' | 'name'
@@ -47,7 +47,7 @@ export const StorePage = () => {
       result = result.filter((item) => item.name.toLowerCase().includes(q))
     }
 
-    if (activeCategory === 'cards' && cardTypeFilter !== 'all') {
+    if ((activeCategory === 'cards' || activeCategory === 'especiales') && cardTypeFilter !== 'all') {
       result = result.filter((item) => (item as CardItem).cardType === cardTypeFilter)
     }
 
@@ -82,6 +82,7 @@ export const StorePage = () => {
     cards: 'Todas las cartas',
     decks: 'Todos los decks',
     accessories: 'Todos los accesorios',
+    especiales: 'Especiales',
   }
 
   const subtitleByCategory: Record<StoreItemCategory, string> = {
@@ -91,6 +92,8 @@ export const StorePage = () => {
       'Decks listos para jugar o mejorar tu estrategia.',
     accessories:
       'Accesorios para tus duelos: playmats, fundas y más.',
+    especiales:
+      'Artículos especiales y exclusivos de la comunidad Yu-Gi-Oh-CMG.',
   }
 
   return (
@@ -319,7 +322,7 @@ export const StorePage = () => {
               </select>
             </label>
 
-            {activeCategory === 'cards' && (
+            {(activeCategory === 'cards' || activeCategory === 'especiales') && (
               <label
                 style={{
                   display: 'flex',

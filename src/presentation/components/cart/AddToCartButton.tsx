@@ -4,7 +4,7 @@ import { useTheme } from '../../../theme/ThemeProvider'
 interface AddToCartButtonProps {
   itemId: string
   name: string
-  category: 'cards' | 'decks' | 'accessories'
+  category: 'cards' | 'decks' | 'accessories' | 'especiales'
   price: { usd: number; cup: number }
   availableStock: number
   size?: 'sm' | 'md'

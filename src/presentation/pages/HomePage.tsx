@@ -17,8 +17,8 @@ export const HomePage = () => {
   const [categories, setCategories] = useState<ProductCategory[]>(content.categories)
 
   useEffect(() => {
-    catalogService.getCounts().then(({ cards, decks, accessories }) => {
-      const counts = { cards, decks, accessories }
+    catalogService.getCounts().then(({ cards, decks, accessories, especiales }) => {
+      const counts = { cards, decks, accessories, especiales }
       setCategories(content.categories.map((cat) =>
         new ProductCategory({ ...cat, totalAvailable: counts[cat.type] })
       ))

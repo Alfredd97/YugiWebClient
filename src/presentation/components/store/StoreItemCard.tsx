@@ -39,6 +39,12 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
       border: 'rgba(251, 191, 36, 0.3)',
       icon: '🏆',
     },
+    especiales: {
+      gradient: 'linear-gradient(145deg, #7c3aed, #ec4899)',
+      glow: 'rgba(124, 58, 237, 0.15)',
+      border: 'rgba(124, 58, 237, 0.3)',
+      icon: '✨',
+    },
   }
 
   const style = categoryStyles[item.category]

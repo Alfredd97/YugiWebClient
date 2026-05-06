@@ -1,4 +1,4 @@
-export type ProductType = 'cards' | 'decks' | 'accessories'
+export type ProductType = 'cards' | 'decks' | 'accessories' | 'especiales'
 
 export class ProductCategory {
   readonly id: string

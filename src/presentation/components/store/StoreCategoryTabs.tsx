@@ -13,6 +13,7 @@ export const StoreCategoryTabs = ({ activeCategory }: StoreCategoryTabsProps) =>
     { id: 'cards', label: 'Cartas' },
     { id: 'decks', label: 'Decks' },
     { id: 'accessories', label: 'Accesorios' },
+    { id: 'especiales', label: 'Especiales' },
   ]
 
   return (

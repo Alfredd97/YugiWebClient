@@ -1,8 +1,9 @@
 import { supabase } from '../supabase/SupabaseClient'
-import { CardItem, type CardType } from '../../domain/entities/CardItem'
+import { EspecialItem } from '../../domain/entities/EspecialItem'
+import { type CardType } from '../../domain/entities/CardItem'
 import { type StoreGameFormat } from '../../domain/entities/StoreItem'
 
-interface CardItemRecord {
+interface EspecialItemRecord {
   id: string
   name: string
   game_format: StoreGameFormat
@@ -16,15 +17,15 @@ interface CardItemRecord {
   tipo?: CardType | null
 }
 
-export class CardItemRepository {
-  async findAll(): Promise<CardItem[]> {
+export class EspecialItemRepository {
+  async findAll(): Promise<EspecialItem[]> {
     const pageSize = 1000
     let from = 0
-    const allRecords: CardItemRecord[] = []
+    const allRecords: EspecialItemRecord[] = []
 
     while (true) {
       const { data, error } = await supabase
-        .from('cards')
+        .from('especiales')
         .select('*')
         .order('created_at', { ascending: false })
         .range(from, from + pageSize - 1)
@@ -38,9 +39,9 @@ export class CardItemRepository {
     return allRecords.map((record) => this.mapToEntity(record))
   }
 
-  async findById(id: string): Promise<CardItem | null> {
+  async findById(id: string): Promise<EspecialItem | null> {
     const { data, error } = await supabase
-      .from('cards')
+      .from('especiales')
       .select('*')
       .eq('id', id)
       .single()
@@ -54,14 +55,14 @@ export class CardItemRepository {
 
   async countAll(): Promise<number> {
     const { count, error } = await supabase
-      .from('cards')
+      .from('especiales')
       .select('*', { count: 'exact', head: true })
     if (error || count === null) return 0
     return count
   }
 
-  private mapToEntity(record: CardItemRecord): CardItem {
-    return new CardItem({
+  private mapToEntity(record: EspecialItemRecord): EspecialItem {
+    return new EspecialItem({
       id: record.id,
       name: record.name,
       quantity: record.quantity,
