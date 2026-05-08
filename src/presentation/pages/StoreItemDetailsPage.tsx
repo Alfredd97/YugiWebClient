@@ -317,7 +317,7 @@ export const StoreItemDetailsPage = () => {
           {(() => {
             const deckImages = item.category === 'decks' ? (item as DeckItem).imageUrls : []
             const hasCarousel = deckImages.length > 1
-            const activeImage = hasCarousel ? deckImages[carouselIndex] : item.imageUrl
+            const activeImage = deckImages.length > 0 ? deckImages[carouselIndex] : item.imageUrl
             return (
               <div style={{ marginBottom: spacing.xl }}>
                 <div
