@@ -1,5 +1,6 @@
 import { useCart } from '../../../application/cart/CartContext'
 import { useTheme } from '../../../theme/ThemeProvider'
+import { useCurrency } from '../../../application/currency/CurrencyContext'
 import { CheckoutService } from '../../../application/messaging/CheckoutService'
 
 interface CartModalProps {
@@ -31,6 +32,7 @@ export const CartModal = ({
     checkout()
   }
   const { colors, radii, shadows, spacing } = useTheme()
+  const { cupPerUsd } = useCurrency()
 
   if (!isOpen) return null
 
@@ -232,7 +234,10 @@ export const CartModal = ({
                         color: colors.primary,
                       }}
                     >
-                      ${item.price.usd.toFixed(2)}
+                      {(item.price.usd * cupPerUsd).toFixed(0)} CUP
+                    </div>
+                    <div style={{ fontSize: 11, color: colors.textSubtle }}>
+                      ${item.price.usd.toFixed(2)} USD
                     </div>
                     <div
                       style={{
