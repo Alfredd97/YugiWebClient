@@ -101,7 +101,7 @@ export const StoreItemDetailsPage = () => {
       maxAvailable: item.quantity,
       addedAt: Date.now(),
     }
-    const shippingCUP = item.category === 'decks' ? 300 : 100
+    const shippingCUP = item.category === 'decks' ? 300 : 150
     checkoutService.checkoutViaWhatsApp([cartItem], item.price.usd, item.price.usd * cupPerUsd, shippingCUP)
   }
 
@@ -153,7 +153,7 @@ export const StoreItemDetailsPage = () => {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
-            Volver a {rawCategory === 'cards' ? 'cartas' : rawCategory === 'decks' ? 'decks' : 'accesorios'}
+            Volver a {rawCategory === 'cards' ? 'cartas' : rawCategory === 'decks' ? 'decks' : rawCategory === 'accessories' ? 'otros' : 'staples'}
           </button>
 
           {/* Title */}

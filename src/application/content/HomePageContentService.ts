@@ -74,8 +74,8 @@ export class HomePageContentService {
         new ProductCategory({
           id: 'accessories',
           type: 'accessories',
-          title: 'Comercio de accesorios',
-          description: 'Accesorios de todo tipo a tu disposición. ¡Accede ahora!',
+          title: 'Otros',
+          description: 'Otros productos a tu disposición. ¡Accede ahora!',
           totalAvailable: 23,
         }),
         new ProductCategory({

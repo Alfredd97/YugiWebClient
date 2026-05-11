@@ -95,7 +95,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                     marginBottom: 8,
                   }}
                 >
-                  {category.type === 'cards' ? 'Cartas' : category.type === 'decks' ? 'Decks' : category.type === 'accessories' ? 'Accesorios' : 'Staples'}
+                  {category.type === 'cards' ? 'Cartas' : category.type === 'decks' ? 'Decks' : category.type === 'accessories' ? 'Otros' : 'Staples'}
                 </p>
                 <h3
                   style={{
@@ -165,7 +165,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                     e.currentTarget.style.color = colors.text
                   }}
                 >
-                  Ir a {category.type === 'cards' ? 'cartas' : category.type === 'decks' ? 'decks' : category.type === 'accessories' ? 'accesorios' : 'staples'}
+                  Ir a {category.type === 'cards' ? 'cartas' : category.type === 'decks' ? 'decks' : category.type === 'accessories' ? 'otros' : 'staples'}
                 </button>
               </div>
 
@@ -186,7 +186,7 @@ export const CommerceSection = ({ categories }: CommerceSectionProps) => {
                   color: '#f8fafc',
                 }}
               >
-                {category.type === 'cards' ? 'Cartas' : category.type === 'decks' ? 'Decks' : category.type === 'accessories' ? 'Accesorios' : 'Staples'}
+                {category.type === 'cards' ? 'Cartas' : category.type === 'decks' ? 'Decks' : category.type === 'accessories' ? 'Otros' : 'Staples'}
               </div>
             </article>
           )

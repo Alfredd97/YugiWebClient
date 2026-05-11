@@ -91,7 +91,7 @@ export const StorePage = () => {
     decks:
       'Decks listos para jugar o mejorar tu estrategia.',
     accessories:
-      'Accesorios para tus duelos: playmats, fundas y más.',
+      'Otros productos disponibles en la comunidad Yu-Gi-Oh-CMG.',
     especiales:
       'Staples esenciales para cualquier deck de la comunidad Yu-Gi-Oh-CMG.',
   }
@@ -411,7 +411,7 @@ export const StorePage = () => {
       <section
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
           gap: spacing.md,
         }}
         className="store-grid"

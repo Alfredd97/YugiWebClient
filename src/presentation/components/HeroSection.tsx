@@ -202,7 +202,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                 gap: spacing.md,
               }}
             >
-              {(['Cartas', 'Decks', 'Accesorios', 'Staples'] as const).map((name, index) => {
+              {(['Cartas', 'Decks', 'Otros', 'Staples'] as const).map((name, index) => {
                 const routes = ['/store/cards', '/store/decks', '/store/accessories', '/store/especiales']
                 const gradients = [
                   'linear-gradient(145deg, #dc2626, #f97316)',
@@ -287,7 +287,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
                 lineHeight: 1.5,
               }}
             >
-              Únase al duelo de monstruos, comercie cartas, decks y accesorios junto a toda la
+              Únase al duelo de monstruos, comercie cartas, decks y más junto a toda la
               comunidad de <span style={{ color: colors.primary, fontWeight: 600 }}>Yu-Gi-Oh-CMG</span>.
             </p>
           </div>

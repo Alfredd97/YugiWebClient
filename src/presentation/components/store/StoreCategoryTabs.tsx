@@ -12,7 +12,7 @@ export const StoreCategoryTabs = ({ activeCategory }: StoreCategoryTabsProps) =>
   const categories: { id: StoreItemCategory; label: string }[] = [
     { id: 'cards', label: 'Cartas' },
     { id: 'decks', label: 'Decks' },
-    { id: 'accessories', label: 'Accesorios' },
+    { id: 'accessories', label: 'Otros' },
     { id: 'especiales', label: 'Staples' },
   ]
 
