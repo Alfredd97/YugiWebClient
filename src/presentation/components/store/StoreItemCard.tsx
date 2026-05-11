@@ -260,7 +260,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
               </span>
             ))}
           </div>
-          {item.category !== 'accessories' && (
+          {item.category !== 'accessories' && item.category !== 'decks' && (
             <div
               style={{
                 display: 'flex',

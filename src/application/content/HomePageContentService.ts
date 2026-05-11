@@ -81,8 +81,8 @@ export class HomePageContentService {
         new ProductCategory({
           id: 'especiales',
           type: 'especiales',
-          title: 'Especiales',
-          description: 'Cartas y artículos especiales de la comunidad. ¡Accede ahora!',
+          title: 'Staples',
+          description: 'Staples esenciales para cualquier deck. ¡Accede ahora!',
           totalAvailable: 0,
         }),
       ],

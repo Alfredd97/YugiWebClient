@@ -82,7 +82,7 @@ export const StorePage = () => {
     cards: 'Todas las cartas',
     decks: 'Todos los decks',
     accessories: 'Todos los accesorios',
-    especiales: 'Especiales',
+    especiales: 'Staples',
   }
 
   const subtitleByCategory: Record<StoreItemCategory, string> = {
@@ -93,7 +93,7 @@ export const StorePage = () => {
     accessories:
       'Accesorios para tus duelos: playmats, fundas y más.',
     especiales:
-      'Artículos especiales y exclusivos de la comunidad Yu-Gi-Oh-CMG.',
+      'Staples esenciales para cualquier deck de la comunidad Yu-Gi-Oh-CMG.',
   }
 
   return (
