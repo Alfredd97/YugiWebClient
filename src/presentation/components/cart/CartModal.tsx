@@ -24,7 +24,7 @@ export const CartModal = ({
   })
 
   const hasDeck = items.some((i) => i.category === 'decks')
-  const shippingCUP = hasDeck ? 300 : 100
+  const shippingCUP = hasDeck ? 300 : 150
 
   const handleCheckout = () => {
     checkoutService.checkoutViaWhatsApp(items, totalUSD, totalCUP, shippingCUP)
