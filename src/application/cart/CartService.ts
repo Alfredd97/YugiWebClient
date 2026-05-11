@@ -99,6 +99,7 @@ export class CartService {
         quantity,
         maxAvailable: item.quantity,
         addedAt: Date.now(),
+        imageUrl: item.imageUrl,
       }
       cart.items.push(cartItem)
     }

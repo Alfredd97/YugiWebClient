@@ -10,7 +10,7 @@ interface CartContextType {
   isOpen: boolean
   isCartExpired: boolean
   toast: { message: string; type: 'success' | 'error' } | null
-  addItem: (itemId: string, name: string, category: CartItem['category'], price: { usd: number; cup: number }, quantity: number, maxAvailable: number) => { success: boolean; message: string }
+  addItem: (itemId: string, name: string, category: CartItem['category'], price: { usd: number; cup: number }, quantity: number, maxAvailable: number, imageUrl?: string | null) => { success: boolean; message: string }
   updateQuantity: (itemId: string, quantity: number, currentStock: number) => { success: boolean; message: string }
   removeItem: (itemId: string) => { success: boolean; message: string }
   clearCart: () => void
@@ -72,7 +72,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     category: CartItem['category'],
     price: { usd: number; cup: number },
     quantity: number,
-    maxAvailable: number
+    maxAvailable: number,
+    imageUrl?: string | null
   ): { success: boolean; message: string } => {
     // Create a pseudo StoreItem for the service
     const pseudoItem = {
@@ -86,6 +87,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       expansionCode: '',
       rarity: '',
       createdAt: new Date(),
+      imageUrl,
     }
 
     const result = cartService.addItem(pseudoItem, quantity)

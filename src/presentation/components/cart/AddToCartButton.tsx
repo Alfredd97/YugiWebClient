@@ -7,6 +7,7 @@ interface AddToCartButtonProps {
   category: 'cards' | 'decks' | 'accessories' | 'especiales'
   price: { usd: number; cup: number }
   availableStock: number
+  imageUrl?: string | null
   size?: 'sm' | 'md'
   showText?: boolean
 }
@@ -17,6 +18,7 @@ export const AddToCartButton = ({
   category,
   price,
   availableStock,
+  imageUrl,
   size = 'md',
   showText = false,
 }: AddToCartButtonProps) => {
@@ -25,7 +27,7 @@ export const AddToCartButton = ({
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
-    addItem(itemId, name, category, price, 1, availableStock)
+    addItem(itemId, name, category, price, 1, availableStock, imageUrl)
   }
 
   const isDisabled = availableStock <= 0

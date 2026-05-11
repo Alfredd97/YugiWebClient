@@ -347,6 +347,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
           category={item.category}
           price={item.price}
           availableStock={item.quantity}
+          imageUrl={deckImages.length > 0 ? deckImages[0] : item.imageUrl}
           size="sm"
         />
       </div>

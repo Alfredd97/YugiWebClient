@@ -101,7 +101,8 @@ export const StoreItemDetailsPage = () => {
       maxAvailable: item.quantity,
       addedAt: Date.now(),
     }
-    checkoutService.checkoutViaWhatsApp([cartItem], item.price.usd, item.price.usd * cupPerUsd)
+    const shippingCUP = item.category === 'decks' ? 300 : 100
+    checkoutService.checkoutViaWhatsApp([cartItem], item.price.usd, item.price.usd * cupPerUsd, shippingCUP)
   }
 
   return (
@@ -470,6 +471,7 @@ export const StoreItemDetailsPage = () => {
               category={item.category}
               price={item.price}
               availableStock={item.quantity}
+              imageUrl={item.category === 'decks' ? (item as import('../../domain/entities/DeckItem').DeckItem).imageUrls[0] ?? item.imageUrl : item.imageUrl}
               size="md"
               showText={true}
             />

@@ -15,7 +15,7 @@ export class CheckoutService {
   /**
    * Format cart items into a WhatsApp message
    */
-  private formatCartMessage(items: CartItem[], totalUSD: number, totalCUP: number): string {
+  private formatCartMessage(items: CartItem[], totalUSD: number, totalCUP: number, shippingCUP: number): string {
     const header = `🛒 *Pedido - ${this.config.businessName}*\n\n`
 
     const itemsList = items
@@ -27,9 +27,16 @@ export class CheckoutService {
       })
       .join('\n\n')
 
+    const hasDeck = items.some((i) => i.category === 'decks')
+    const shippingLines = hasDeck
+      ? `\n   🎴 Envío con deck: 300 CUP`
+      : `\n   📦 Envío estándar: 100 CUP`
+
     const totals = `\n\n───────────────────\n` +
       `*TOTAL: $${totalUSD.toFixed(2)} USD*\n` +
-      `(≈${totalCUP.toFixed(1)} CUP)\n` +
+      `(≈${totalCUP.toFixed(0)} CUP)\n` +
+      `\n🚚 *Envío: ${shippingCUP} CUP*${shippingLines}\n` +
+      `\n💰 *TOTAL CON ENVÍO: ${(totalCUP + shippingCUP).toFixed(0)} CUP*\n` +
       `───────────────────`
 
     const footer = `\n\nHola, quiero completar la compra de estos productos. ` +
@@ -41,8 +48,8 @@ export class CheckoutService {
   /**
    * Open WhatsApp with the checkout message
    */
-  checkoutViaWhatsApp(items: CartItem[], totalUSD: number, totalCUP: number): void {
-    const message = this.formatCartMessage(items, totalUSD, totalCUP)
+  checkoutViaWhatsApp(items: CartItem[], totalUSD: number, totalCUP: number, shippingCUP: number): void {
+    const message = this.formatCartMessage(items, totalUSD, totalCUP, shippingCUP)
     const encodedMessage = encodeURIComponent(message)
     const whatsappUrl = `https://wa.me/${this.config.phoneNumber}?text=${encodedMessage}`
 
@@ -52,8 +59,8 @@ export class CheckoutService {
   /**
    * Create a WhatsApp checkout link (without opening)
    */
-  createCheckoutLink(items: CartItem[], totalUSD: number, totalCUP: number): string {
-    const message = this.formatCartMessage(items, totalUSD, totalCUP)
+  createCheckoutLink(items: CartItem[], totalUSD: number, totalCUP: number, shippingCUP: number): string {
+    const message = this.formatCartMessage(items, totalUSD, totalCUP, shippingCUP)
     const encodedMessage = encodeURIComponent(message)
     return `https://wa.me/${this.config.phoneNumber}?text=${encodedMessage}`
   }

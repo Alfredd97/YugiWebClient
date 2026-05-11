@@ -22,14 +22,12 @@ export const CartModal = ({
     businessName,
   })
 
+  const hasDeck = items.some((i) => i.category === 'decks')
+  const shippingCUP = hasDeck ? 300 : 100
+
   const handleCheckout = () => {
-    // Open WhatsApp with cart details
-    checkoutService.checkoutViaWhatsApp(items, totalUSD, totalCUP)
-
-    // Execute custom callback if provided
+    checkoutService.checkoutViaWhatsApp(items, totalUSD, totalCUP, shippingCUP)
     onCheckout?.()
-
-    // Clear cart after successful checkout
     checkout()
   }
   const { colors, radii, shadows, spacing } = useTheme()
@@ -174,17 +172,21 @@ export const CartModal = ({
                     border: `1px solid ${colors.borderSubtle}`,
                   }}
                 >
-                  {/* Product Image Placeholder */}
+                  {/* Product Image */}
                   <div
                     style={{
                       width: 60,
                       height: 60,
                       borderRadius: radii.md,
+                      overflow: 'hidden',
+                      flexShrink: 0,
                       background: item.category === 'cards'
                         ? 'linear-gradient(145deg, #38bdf8, #0ea5e9)'
                         : item.category === 'decks'
                           ? 'linear-gradient(145deg, #f97316, #ea580c)'
-                          : 'linear-gradient(145deg, #fbbf24, #f59e0b)',
+                          : item.category === 'especiales'
+                            ? 'linear-gradient(145deg, #7c3aed, #ec4899)'
+                            : 'linear-gradient(145deg, #fbbf24, #f59e0b)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -194,7 +196,15 @@ export const CartModal = ({
                       textTransform: 'uppercase',
                     }}
                   >
-                    {item.name.charAt(0)}
+                    {item.imageUrl ? (
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    ) : (
+                      item.name.charAt(0)
+                    )}
                   </div>
 
                   {/* Product Info */}
@@ -360,14 +370,30 @@ export const CartModal = ({
               background: 'rgba(2, 6, 23, 0.5)',
             }}
           >
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: spacing.md,
-              }}
-            >
-              <span style={{ fontSize: 14, color: colors.textMuted }}>Total:</span>
+            {/* Subtotal */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: spacing.sm }}>
+              <span style={{ fontSize: 13, color: colors.textMuted }}>Subtotal:</span>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: colors.text }}>{totalCUP.toFixed(0)} CUP</div>
+                <div style={{ fontSize: 11, color: colors.textSubtle }}>${totalUSD.toFixed(2)} USD</div>
+              </div>
+            </div>
+
+            {/* Shipping */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: spacing.sm }}>
+              <div>
+                <span style={{ fontSize: 13, color: colors.textMuted }}>Envío:</span>
+                <div style={{ fontSize: 10, color: colors.textSubtle, marginTop: 2 }}>{hasDeck ? 'Envío con deck' : 'Envío estándar'}</div>
+              </div>
+              <span style={{ fontSize: 13, fontWeight: 600, color: colors.text }}>{shippingCUP} CUP</span>
+            </div>
+
+            {/* Divider */}
+            <div style={{ height: 1, background: colors.borderSubtle, marginBottom: spacing.sm }} />
+
+            {/* Grand Total */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: spacing.md }}>
+              <span style={{ fontSize: 14, fontWeight: 700, color: colors.text }}>Total:</span>
               <div style={{ textAlign: 'right' }}>
                 <div
                   style={{
@@ -380,10 +406,10 @@ export const CartModal = ({
                     lineHeight: 1,
                   }}
                 >
-                  ${totalUSD.toFixed(2)} USD
+                  {(totalCUP + shippingCUP).toFixed(0)} CUP
                 </div>
-                <div style={{ fontSize: 12, color: colors.textSubtle }}>
-                  ≈{totalCUP.toFixed(1)} CUP
+                <div style={{ fontSize: 11, color: colors.textSubtle, marginTop: 2 }}>
+                  ${totalUSD.toFixed(2)} USD + envío
                 </div>
               </div>
             </div>

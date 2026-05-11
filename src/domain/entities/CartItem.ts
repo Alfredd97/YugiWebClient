@@ -11,4 +11,5 @@ export interface CartItem {
   quantity: number
   maxAvailable: number
   addedAt: number
+  imageUrl?: string | null
 }
