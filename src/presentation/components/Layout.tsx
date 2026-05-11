@@ -69,7 +69,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
       >
         <div
           style={{
-            maxWidth: 1120,
+            maxWidth: 1240,
             margin: '0 auto',
             padding: `${spacing.md}px ${spacing.lg}px`,
             display: 'flex',
@@ -179,7 +179,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
 
       <main
         style={{
-          maxWidth: 1120,
+          maxWidth: 1240,
           margin: '0 auto',
           padding: `${spacing.xl}px ${spacing.lg}px ${spacing.sectionPaddingY}px`,
           position: 'relative',
@@ -202,7 +202,7 @@ export const Layout = ({ children, onCheckout }: LayoutProps) => {
       >
         <div
           style={{
-            maxWidth: 1120,
+            maxWidth: 1240,
             margin: '0 auto',
             display: 'flex',
             flexWrap: 'wrap',

@@ -198,21 +198,23 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+                gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
                 gap: spacing.md,
               }}
             >
-              {(['Cartas', 'Decks', 'Accesorios'] as const).map((name, index) => {
-                const routes = ['/store/cards', '/store/decks', '/store/accessories']
+              {(['Cartas', 'Decks', 'Accesorios', 'Staples'] as const).map((name, index) => {
+                const routes = ['/store/cards', '/store/decks', '/store/accessories', '/store/especiales']
                 const gradients = [
                   'linear-gradient(145deg, #dc2626, #f97316)',
                   'linear-gradient(145deg, #4f46e5, #06b6d4)',
                   'linear-gradient(145deg, #fbbf24, #f59e0b)',
+                  'linear-gradient(145deg, #7c3aed, #ec4899)',
                 ]
                 const glows = [
                   '0 0 25px rgba(220, 38, 38, 0.5)',
                   '0 0 35px rgba(79, 70, 229, 0.5)',
                   '0 0 25px rgba(251, 191, 36, 0.5)',
+                  '0 0 25px rgba(124, 58, 237, 0.5)',
                 ]
 
                 return (
