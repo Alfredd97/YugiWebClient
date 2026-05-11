@@ -1,6 +1,6 @@
 export type StoreItemCategory = 'cards' | 'decks' | 'accessories' | 'especiales'
 
-export type StoreGameFormat = 'TCG' | 'OCG'
+export type StoreGameFormat = 'TCG' | 'OCG' | 'TCG-OCG'
 
 export interface StorePrice {
   readonly usd: number

@@ -255,7 +255,7 @@ export const StoreItemDetailsPage = () => {
 
               {/* Right column */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.md }}>
-                {item.category !== 'accessories' && (
+                {item.category !== 'accessories' && item.category !== 'decks' && (
                   <>
                     <InfoRow
                       icon={
