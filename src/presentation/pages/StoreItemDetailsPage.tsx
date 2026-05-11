@@ -448,7 +448,7 @@ export const StoreItemDetailsPage = () => {
                 lineHeight: 1,
               }}
             >
-              ${item.price.usd.toFixed(2)}
+              {(item.price.usd * cupPerUsd).toFixed(0)} CUP
             </div>
             <div
               style={{
@@ -458,7 +458,7 @@ export const StoreItemDetailsPage = () => {
                 fontWeight: 500,
               }}
             >
-              ≈{(item.price.usd * cupPerUsd).toFixed(1)} CUP
+              ${item.price.usd.toFixed(2)} USD
             </div>
           </div>
 
