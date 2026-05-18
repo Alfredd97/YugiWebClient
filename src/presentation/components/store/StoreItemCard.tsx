@@ -66,7 +66,7 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
         cursor: 'pointer',
         position: 'relative',
         overflow: 'hidden',
-        minHeight: 120,
+        minHeight: 170,
       }}
       className="store-item-card"
       onMouseEnter={(e) => {
@@ -99,8 +99,8 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
       {/* Product Image / Carousel */}
       <div
         style={{
-          width: 90,
-          height: 90,
+          width: 110,
+          height: 140,
           borderRadius: radii.md,
           border: `1px solid ${colors.borderSubtle}`,
           background: 'transparent',
