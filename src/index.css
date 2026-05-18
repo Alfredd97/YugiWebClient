@@ -137,19 +137,14 @@ img {
   }
 
   .store-item-card {
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    text-align: left !important;
+    gap: 12px !important;
   }
 
   .store-item-card > div:last-child {
-    width: 100% !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    border-left: none !important;
-    border-top: 1px solid rgba(51, 65, 85, 0.3) !important;
-    padding-top: 8px !important;
-    padding-left: 0 !important;
+    padding-left: 8px !important;
   }
 
   .product-details-grid {
