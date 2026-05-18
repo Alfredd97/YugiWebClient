@@ -127,6 +127,10 @@ img {
   .tablet-stack {
     flex-direction: column !important;
   }
+
+  .store-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }
 
 /* Mobile store grid */
