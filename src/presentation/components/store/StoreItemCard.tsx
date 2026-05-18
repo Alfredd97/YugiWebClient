@@ -223,10 +223,11 @@ export const StoreItemCard = ({ item }: StoreItemCardProps) => {
         <h3
           style={{
             margin: 0,
-            fontSize: 13,
+            fontSize: 18,
             fontWeight: 700,
             color: colors.text,
             lineHeight: 1.3,
+            wordBreak: 'break-word',
           }}
         >
           {item.name}
